@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import {
   Box,
   CircularProgress,
@@ -8,6 +8,7 @@ import './App.css'
 import { useAuth } from './lib/AuthProvider'
 import Navigation from './components/Navigation'
 import AuthModal from './components/AuthModal'
+import PageTransition from './components/PageTransition'
 
 // Import page components
 import Home from './pages/Home'
@@ -21,6 +22,7 @@ import Contact from './pages/Contact'
 function App() {
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const { loading } = useAuth()
+  const location = useLocation()
 
   if (loading) {
     return (
@@ -39,15 +41,17 @@ function App() {
     <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
       <Navigation onAuthModalOpen={() => setAuthModalOpen(true)} />
       
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/bio" element={<Bio />} />
-        <Route path="/resume" element={<Resume />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/learn" element={<Learn />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+      <PageTransition>
+        <Box key={location.pathname}>
+          {location.pathname === '/' && <Home />}
+          {location.pathname === '/bio' && <Bio />}
+          {location.pathname === '/resume' && <Resume />}
+          {location.pathname === '/projects' && <Projects />}
+          {location.pathname === '/blog' && <Blog />}
+          {location.pathname === '/learn' && <Learn />}
+          {location.pathname === '/contact' && <Contact />}
+        </Box>
+      </PageTransition>
 
       <AuthModal
         open={authModalOpen}
