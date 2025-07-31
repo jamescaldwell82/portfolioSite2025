@@ -1,8 +1,10 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .logo {
@@ -38,5 +40,27 @@
 }
 
 .read-the-docs {
-  color: #888;
+  color: #cccccc;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 600px) {
+  .logo {
+    height: 4em;
+    padding: 1em;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .logo {
+    height: 5em;
+    padding: 1.25em;
+  }
+}
+
+@media (min-width: 901px) {
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+  }
 }

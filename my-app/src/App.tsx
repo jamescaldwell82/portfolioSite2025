@@ -1,26 +1,26 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Container,
   Box,
-  Paper,
   CircularProgress,
 } from '@mui/material'
-import { Login as LoginIcon } from '@mui/icons-material'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { useAuth } from './lib/AuthProvider'
+import Navigation from './components/Navigation'
 import AuthModal from './components/AuthModal'
-import UserProfile from './components/UserProfile'
+
+// Import page components
+import Home from './pages/Home'
+import Bio from './pages/Bio'
+import Resume from './pages/Resume'
+import Projects from './pages/Projects'
+import Blog from './pages/Blog'
+import Learn from './pages/Learn'
+import Contact from './pages/Contact'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [authModalOpen, setAuthModalOpen] = useState(false)
-  const { user, loading } = useAuth()
+  const { loading } = useAuth()
 
   if (loading) {
     return (
@@ -36,75 +36,24 @@ function App() {
   }
 
   return (
-    <>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            James Caldwell Portfolio
-          </Typography>
-          {user ? (
-            <UserProfile />
-          ) : (
-            <Button
-              color="inherit"
-              startIcon={<LoginIcon />}
-              onClick={() => setAuthModalOpen(true)}
-            >
-              Sign In
-            </Button>
-          )}
-        </Toolbar>
-      </AppBar>
-
-      <Container maxWidth="lg" sx={{ mt: 4 }}>
-        <Paper elevation={3} sx={{ p: 4, textAlign: 'center' }}>
-          <Box sx={{ mb: 3 }}>
-            <a href="https://vite.dev" target="_blank">
-              <img src={viteLogo} className="logo" alt="Vite logo" />
-            </a>
-            <a href="https://react.dev" target="_blank">
-              <img src={reactLogo} className="logo react" alt="React logo" />
-            </a>
-          </Box>
-          
-          <Typography variant="h3" component="h1" gutterBottom>
-            Vite + React
-          </Typography>
-          
-          <Typography variant="h4" component="h2" gutterBottom color="primary">
-            James Caldwell
-          </Typography>
-
-          {user && (
-            <Typography variant="h6" gutterBottom color="success.main">
-              Welcome, {user.displayName || user.email}!
-            </Typography>
-          )}
-
-          <Box sx={{ my: 3 }}>
-            <Button
-              variant="contained"
-              size="large"
-              onClick={() => setCount((count) => count + 1)}
-            >
-              Count is {count}
-            </Button>
-            <Typography variant="body1" sx={{ mt: 2 }}>
-              Edit <code>src/App.tsx</code> and save to test HMR
-            </Typography>
-          </Box>
-          
-          <Typography variant="body2" color="text.secondary">
-            Click on the Vite and React logos to learn more
-          </Typography>
-        </Paper>
-      </Container>
+    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
+      <Navigation onAuthModalOpen={() => setAuthModalOpen(true)} />
+      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/bio" element={<Bio />} />
+        <Route path="/resume" element={<Resume />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/learn" element={<Learn />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
 
       <AuthModal
         open={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
       />
-    </>
+    </Box>
   )
 }
 
