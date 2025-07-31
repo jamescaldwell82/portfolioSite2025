@@ -1,13 +1,33 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
 import './index.css'
 import App from './App.tsx'
 import { FirebaseProvider } from './lib/FirebaseProvider.tsx'
+import { AuthProvider } from './lib/AuthProvider.tsx'
+
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#dc004e',
+    },
+  },
+});
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <FirebaseProvider>
-    <App />
-    </FirebaseProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <FirebaseProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </FirebaseProvider>
+    </ThemeProvider>
   </StrictMode>,
 )
