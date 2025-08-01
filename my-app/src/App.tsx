@@ -38,11 +38,11 @@ function App() {
   }
 
   return (
-    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
+    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', width: '100%', margin: 0, padding: 0 }}>
       <Navigation onAuthModalOpen={() => setAuthModalOpen(true)} />
       
       <PageTransition>
-        <Box key={location.pathname}>
+        <Box key={location.pathname} sx={{ width: '100%', margin: 0, padding: 0 }}>
           {location.pathname === '/' && <Home />}
           {location.pathname === '/bio' && <Bio />}
           {location.pathname === '/resume' && <Resume />}

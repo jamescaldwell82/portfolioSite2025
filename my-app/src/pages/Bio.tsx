@@ -106,7 +106,75 @@ const chapters: TimelineChapter[] = [
 
   return (
     <PageLayout title="My Journey">
-      <Container maxWidth="md">
+      {/* Roadmap Background */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          overflow: 'hidden',
+          zIndex: 0,
+          opacity: 0.1,
+          pointerEvents: 'none'
+        }}
+      >
+        {/* Winding Road Path */}
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 800 1200"
+          preserveAspectRatio="none"
+          style={{ position: 'absolute', top: 0, left: 0 }}
+        >
+          {/* Main road path */}
+          <path
+            d="M 100 50 Q 300 150 500 200 Q 700 250 600 400 Q 500 550 200 600 Q 100 700 400 800 Q 700 900 500 1000 Q 300 1100 400 1150"
+            stroke="rgba(100, 255, 218, 0.3)"
+            strokeWidth="8"
+            fill="none"
+            strokeDasharray="20,10"
+          />
+          
+          {/* Road markers/milestones */}
+          <circle cx="150" cy="80" r="8" fill="rgba(100, 255, 218, 0.4)" />
+          <circle cx="480" cy="220" r="8" fill="rgba(255, 107, 107, 0.4)" />
+          <circle cx="580" cy="380" r="8" fill="rgba(78, 205, 196, 0.4)" />
+          <circle cx="220" cy="620" r="8" fill="rgba(69, 183, 209, 0.4)" />
+          <circle cx="420" cy="820" r="8" fill="rgba(150, 206, 180, 0.4)" />
+          <circle cx="480" cy="1020" r="8" fill="rgba(254, 202, 87, 0.4)" />
+          
+          {/* Decorative elements */}
+          <rect x="50" y="30" width="20" height="15" fill="rgba(255, 255, 255, 0.1)" rx="2" />
+          <rect x="750" y="200" width="15" height="20" fill="rgba(255, 255, 255, 0.1)" rx="2" />
+          <rect x="30" y="500" width="25" height="12" fill="rgba(255, 255, 255, 0.1)" rx="2" />
+          <rect x="700" y="700" width="18" height="18" fill="rgba(255, 255, 255, 0.1)" rx="2" />
+          <rect x="200" y="950" width="22" height="14" fill="rgba(255, 255, 255, 0.1)" rx="2" />
+          
+          {/* Additional path decorations */}
+          <path
+            d="M 50 100 Q 150 120 250 140"
+            stroke="rgba(255, 255, 255, 0.05)"
+            strokeWidth="2"
+            fill="none"
+          />
+          <path
+            d="M 600 300 Q 700 320 750 350"
+            stroke="rgba(255, 255, 255, 0.05)"
+            strokeWidth="2"
+            fill="none"
+          />
+          <path
+            d="M 100 800 Q 200 820 300 840"
+            stroke="rgba(255, 255, 255, 0.05)"
+            strokeWidth="2"
+            fill="none"
+          />
+        </svg>
+      </Box>
+
+      <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1 }}>
         <Typography 
           variant="h4" 
           sx={{ 
@@ -116,7 +184,7 @@ const chapters: TimelineChapter[] = [
             fontWeight: 'bold'
           }}
         >
-          Life Chapters
+          Life Roadmap
         </Typography>
         
         <Typography 
@@ -128,125 +196,161 @@ const chapters: TimelineChapter[] = [
             fontSize: '1.1rem'
           }}
         >
-          Click on any chapter to explore that part of my journey
+          Follow the journey through the chapters of my life
         </Typography>
 
-        <Stack spacing={3}>
-          {chapters.map((chapter) => (
-            <Card
+        <Stack spacing={4}>
+          {chapters.map((chapter, index) => (
+            <Box
               key={chapter.id}
               sx={{
-                background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
-                border: `2px solid ${chapter.color}`,
-                borderRadius: '16px',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
-                  boxShadow: `0 8px 25px ${chapter.color}40`
-                }
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'flex-start',
+                flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
+                gap: 4,
+                mb: 4
               }}
             >
-              <CardContent 
-                sx={{ 
-                  p: 0,
-                  '&:last-child': { pb: 0 }
+              {/* Roadmap connector line */}
+              {index < chapters.length - 1 && (
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '60px',
+                    left: index % 2 === 0 ? '50%' : '45%',
+                    width: '2px',
+                    height: '80px',
+                    background: `linear-gradient(to bottom, ${chapter.color}40, ${chapters[index + 1].color}40)`,
+                    zIndex: 0,
+                    transform: 'translateX(-50%)',
+                  }}
+                />
+              )}
+
+              {/* Timeline milestone */}
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 80,
+                  height: 80,
+                  borderRadius: '50%',
+                  backgroundColor: chapter.color,
+                  color: '#000',
+                  flexShrink: 0,
+                  position: 'relative',
+                  zIndex: 2,
+                  boxShadow: `0 0 20px ${chapter.color}40`,
+                  border: '4px solid rgba(255, 255, 255, 0.1)',
+                  fontSize: '1.5rem'
                 }}
               >
-                <Box
-                  onClick={() => toggleChapter(chapter.id)}
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    p: 3,
-                    cursor: 'pointer',
-                    '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)'
-                    },
-                    transition: 'background-color 0.3s ease'
+                {chapter.icon}
+              </Box>
+
+              {/* Chapter content card */}
+              <Card
+                sx={{
+                  flex: 1,
+                  background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
+                  border: `2px solid ${chapter.color}`,
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: `0 8px 25px ${chapter.color}40`
+                  },
+                  position: 'relative',
+                  zIndex: 1
+                }}
+              >
+                <CardContent 
+                  sx={{ 
+                    p: 0,
+                    '&:last-child': { pb: 0 }
                   }}
                 >
                   <Box
+                    onClick={() => toggleChapter(chapter.id)}
                     sx={{
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center',
-                      width: 60,
-                      height: 60,
-                      borderRadius: '50%',
-                      backgroundColor: chapter.color,
-                      color: '#000',
-                      mr: 3,
-                      flexShrink: 0
+                      p: 3,
+                      cursor: 'pointer',
+                      '&:hover': {
+                        backgroundColor: 'rgba(255, 255, 255, 0.05)'
+                      },
+                      transition: 'background-color 0.3s ease'
                     }}
                   >
-                    {chapter.icon}
-                  </Box>
-
-                  <Box sx={{ flexGrow: 1 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                      <Chip
-                        label={chapter.period}
+                    <Box sx={{ flexGrow: 1 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                        <Chip
+                          label={chapter.period}
+                          sx={{
+                            backgroundColor: chapter.color,
+                            color: '#000',
+                            fontWeight: 'bold',
+                            mr: 2
+                          }}
+                        />
+                      </Box>
+                      <Typography
+                        variant="h6"
                         sx={{
-                          backgroundColor: chapter.color,
-                          color: '#000',
+                          color: 'white',
                           fontWeight: 'bold',
-                          mr: 2
+                          fontSize: { xs: '1.1rem', md: '1.25rem' }
                         }}
-                      />
+                      >
+                        {chapter.title}
+                      </Typography>
                     </Box>
-                    <Typography
-                      variant="h6"
+
+                    <IconButton
                       sx={{
-                        color: 'white',
-                        fontWeight: 'bold',
-                        fontSize: { xs: '1.1rem', md: '1.25rem' }
+                        color: chapter.color,
+                        transform: expandedChapters.includes(chapter.id) 
+                          ? 'rotate(180deg)' 
+                          : 'rotate(0deg)',
+                        transition: 'transform 0.3s ease'
                       }}
                     >
-                      {chapter.title}
-                    </Typography>
+                      <ExpandMoreIcon />
+                    </IconButton>
                   </Box>
 
-                  <IconButton
-                    sx={{
-                      color: chapter.color,
-                      transform: expandedChapters.includes(chapter.id) 
-                        ? 'rotate(180deg)' 
-                        : 'rotate(0deg)',
-                      transition: 'transform 0.3s ease'
-                    }}
-                  >
-                    <ExpandMoreIcon />
-                  </IconButton>
-                </Box>
-
-                <Collapse in={expandedChapters.includes(chapter.id)}>
-                  <Box
-                    sx={{
-                      px: 3,
-                      pb: 3,
-                      borderTop: `1px solid ${chapter.color}40`
-                    }}
-                  >
-                    <Typography
-                      variant="body1"
+                  <Collapse in={expandedChapters.includes(chapter.id)}>
+                    <Box
                       sx={{
-                        color: 'rgba(255, 255, 255, 0.9)',
-                        lineHeight: 1.7,
-                        fontSize: '1rem',
-                        pt: 2
+                        px: 3,
+                        pb: 3,
+                        borderTop: `1px solid ${chapter.color}40`
                       }}
                     >
-                      {chapter.content}
-                    </Typography>
-                  </Box>
-                </Collapse>
-              </CardContent>
-            </Card>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: 'rgba(255, 255, 255, 0.9)',
+                          lineHeight: 1.7,
+                          fontSize: '1rem',
+                          pt: 2
+                        }}
+                      >
+                        {chapter.content}
+                      </Typography>
+                    </Box>
+                  </Collapse>
+                </CardContent>
+              </Card>
+            </Box>
           ))}
         </Stack>
 
-        <Box sx={{ mt: 6, textAlign: 'center' }}>
+        <Box sx={{ mt: 6, textAlign: 'center', position: 'relative', zIndex: 1 }}>
           <Typography
             variant="h6"
             sx={{
@@ -265,7 +369,7 @@ const chapters: TimelineChapter[] = [
               mx: 'auto'
             }}
           >
-            Each chapter has shaped who I am today - from being a dedicated father and student, 
+            Each milestone has shaped who I am today - from being a dedicated father and student, 
             to serving communities, pivoting to technology, teaching others, and now engineering 
             solutions while building a life in Minnesota. The journey continues...
           </Typography>

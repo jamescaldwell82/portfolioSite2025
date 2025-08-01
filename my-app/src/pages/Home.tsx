@@ -39,13 +39,19 @@ const Home: React.FC = () => {
   return (
     <Box
       sx={{
-        minHeight: '100vh',
+        height: 'calc(100vh - 64px)', // Subtract navigation height (64px on mobile, 72px on desktop)
+        '@media (min-width: 900px)': {
+          height: 'calc(100vh - 72px)', // Desktop navigation height
+        },
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
+        background: '#000',
+        width: '100%',
+        margin: 0,
+        padding: 0,
       }}
     >
       {/* Background Image Placeholders */}
