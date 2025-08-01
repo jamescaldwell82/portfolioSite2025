@@ -267,7 +267,7 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthModalOpen }) => {
             }
           }}
         >
-          James Caldwell
+          James Caldwell | Portfolio
         </Typography>
 
         {renderDesktopNav()}

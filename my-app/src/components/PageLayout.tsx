@@ -3,7 +3,7 @@ import { Box, Container, Typography } from '@mui/material';
 import type { ReactNode } from 'react';
 
 interface PageLayoutProps {
-  title: string;
+  title?: string;
   children: ReactNode;
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
 }
@@ -27,6 +27,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
           px: { xs: 2, sm: 3, md: 4, lg: 6 },
         }}
       >
+        {title && (
         <Typography 
           variant="h1" 
           component="h1" 
@@ -42,7 +43,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
         >
           {title}
         </Typography>
-        
+        )}
         <Box sx={{ 
           color: 'text.primary',
           '& p': {

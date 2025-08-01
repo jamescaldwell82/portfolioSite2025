@@ -204,175 +204,162 @@ const chapters: TimelineChapter[] = [
         </svg>
       </Box>
 
-      <PageLayout title="My Journey">
+      <PageLayout>
 
-      <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1 }}>
-        <Typography 
-          variant="h4" 
-          sx={{ 
-            textAlign: 'center', 
-            mb: 2,
-            color: '#64ffda',
-            fontWeight: 'bold'
-          }}
-        >
-          Life Roadmap
-        </Typography>       
-
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+       <Box sx={{ mt: 6, textAlign: 'center', position: 'relative', zIndex: 1 }}>
+          <Typography
+            variant="h2"
+            sx={{
+              color: '#64ffda',
+              fontStyle: 'italic',
+              mb: 2
+            }}
+          >
+            "Life is a journey, not a destination"
+          </Typography>
+          <Typography
+            variant="h4"
+            sx={{
+              color: 'text.secondary',
+              maxWidth: 600,
+              mx: 'auto',
+              mb: 10
+            }}
+          >
+            Each milestone has shaped who I am today - from being a dedicated father and student, 
+            to serving communities, pivoting to technology, teaching others, and now engineering 
+            solutions while building a life in Minnesota. The journey continues...
+          </Typography>
+        </Box>
         <Stack spacing={4}>
-          {chapters.map((chapter, index) => (
+          {chapters.map((chapter) => (
             <Box
               key={chapter.id}
               sx={{
                 position: 'relative',
-                width: '100%'
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center'
               }}
             >
-              {/* Desktop Layout - Side-by-side with roadmap connectors */}
-              <Box
+              {/* Desktop Layout - Centered with 60% width */}
+              <Card
                 sx={{
-                  display: { xs: 'none', md: 'flex' },
-                  alignItems: 'flex-start',
-                  flexDirection: index % 2 === 0 ? 'row' : 'row-reverse',
-                  gap: 4,
+                  display: { xs: 'none', md: 'block' },
+                  width: '60%',
+                  background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
+                  border: `2px solid ${chapter.color}`,
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: `0 8px 25px ${chapter.color}40`
+                  },
+                  position: 'relative',
+                  zIndex: 1,
                   mb: 4
                 }}
               >
-                {/* Roadmap connector line */}
-                {index < chapters.length - 1 && (
+                <CardContent 
+                  sx={{ 
+                    p: 0,
+                    '&:last-child': { pb: 0 }
+                  }}
+                >
                   <Box
+                    onClick={() => toggleChapter(chapter.id)}
                     sx={{
-                      position: 'absolute',
-                      top: '60px',
-                      left: index % 2 === 0 ? '50%' : '45%',
-                      width: '2px',
-                      height: '80px',
-                      background: `linear-gradient(to bottom, ${chapter.color}40, ${chapters[index + 1].color}40)`,
-                      zIndex: 0,
-                      transform: 'translateX(-50%)',
-                    }}
-                  />
-                )}
-
-                {/* Timeline milestone */}
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 80,
-                    height: 80,
-                    borderRadius: '50%',
-                    backgroundColor: chapter.color,
-                    color: '#000',
-                    flexShrink: 0,
-                    position: 'relative',
-                    zIndex: 2,
-                    boxShadow: `0 0 20px ${chapter.color}40`,
-                    border: '4px solid rgba(255, 255, 255, 0.1)',
-                    fontSize: '1.5rem'
-                  }}
-                >
-                  {chapter.icon}
-                </Box>
-
-                {/* Chapter content card */}
-                <Card
-                  sx={{
-                    flex: 1,
-                    background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
-                    border: `2px solid ${chapter.color}`,
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      transform: 'translateY(-4px)',
-                      boxShadow: `0 8px 25px ${chapter.color}40`
-                    },
-                    position: 'relative',
-                    zIndex: 1
-                  }}
-                >
-                  <CardContent 
-                    sx={{ 
-                      p: 0,
-                      '&:last-child': { pb: 0 }
+                      display: 'flex',
+                      alignItems: 'center',
+                      p: 3,
+                      cursor: 'pointer',
+                      '&:hover': {
+                        backgroundColor: 'rgba(255, 255, 255, 0.05)'
+                      },
+                      transition: 'background-color 0.3s ease'
                     }}
                   >
+                    {/* Icon inside the accordion for desktop */}
                     <Box
-                      onClick={() => toggleChapter(chapter.id)}
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        p: 3,
-                        cursor: 'pointer',
-                        '&:hover': {
-                          backgroundColor: 'rgba(255, 255, 255, 0.05)'
-                        },
-                        transition: 'background-color 0.3s ease'
+                        justifyContent: 'center',
+                        width: 60,
+                        height: 60,
+                        borderRadius: '50%',
+                        backgroundColor: chapter.color,
+                        color: '#000',
+                        mr: 3,
+                        flexShrink: 0,
+                        fontSize: '1.4rem'
                       }}
                     >
-                      <Box sx={{ flexGrow: 1 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                          <Chip
-                            label={chapter.period}
-                            sx={{
-                              backgroundColor: chapter.color,
-                              color: '#000',
-                              fontWeight: 'bold',
-                              mr: 2
-                            }}
-                          />
-                        </Box>
-                        <Typography
-                          variant="h6"
-                          sx={{
-                            color: 'white',
-                            fontWeight: 'bold',
-                            fontSize: { xs: '1.1rem', md: '1.25rem' }
-                          }}
-                        >
-                          {chapter.title}
-                        </Typography>
-                      </Box>
-
-                      <IconButton
-                        sx={{
-                          color: chapter.color,
-                          transform: expandedChapters.includes(chapter.id) 
-                            ? 'rotate(180deg)' 
-                            : 'rotate(0deg)',
-                          transition: 'transform 0.3s ease'
-                        }}
-                      >
-                        <ExpandMoreIcon />
-                      </IconButton>
+                      {chapter.icon}
                     </Box>
 
-                    <Collapse in={expandedChapters.includes(chapter.id)}>
-                      <Box
+                    <Box sx={{ flexGrow: 1 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                        <Chip
+                          label={chapter.period}
+                          sx={{
+                            backgroundColor: chapter.color,
+                            color: '#000',
+                            fontWeight: 'bold',
+                            mr: 2
+                          }}
+                        />
+                      </Box>
+                      <Typography
+                        variant="h6"
                         sx={{
-                          px: 3,
-                          pb: 3,
-                          borderTop: `1px solid ${chapter.color}40`
+                          color: 'white',
+                          fontWeight: 'bold',
+                          fontSize: '1.25rem'
                         }}
                       >
-                        <Typography
-                          variant="body1"
-                          sx={{
-                            color: 'rgba(255, 255, 255, 0.9)',
-                            lineHeight: 1.7,
-                            fontSize: '1rem',
-                            pt: 2
-                          }}
-                        >
-                          {chapter.content}
-                        </Typography>
-                      </Box>
-                    </Collapse>
-                  </CardContent>
-                </Card>
-              </Box>
+                        {chapter.title}
+                      </Typography>
+                    </Box>
+
+                    <IconButton
+                      sx={{
+                        color: chapter.color,
+                        transform: expandedChapters.includes(chapter.id) 
+                          ? 'rotate(180deg)' 
+                          : 'rotate(0deg)',
+                        transition: 'transform 0.3s ease'
+                      }}
+                    >
+                      <ExpandMoreIcon />
+                    </IconButton>
+                  </Box>
+
+                  <Collapse in={expandedChapters.includes(chapter.id)}>
+                    <Box
+                      sx={{
+                        px: 3,
+                        pb: 3,
+                        borderTop: `1px solid ${chapter.color}40`
+                      }}
+                    >
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: 'rgba(255, 255, 255, 0.9)',
+                          lineHeight: 1.7,
+                          fontSize: '1rem',
+                          pt: 2
+                        }}
+                      >
+                        {chapter.content}
+                      </Typography>
+                    </Box>
+                  </Collapse>
+                </CardContent>
+              </Card>
 
               {/* Mobile Layout - Full width accordions with icons inside */}
               <Card
@@ -494,32 +481,7 @@ const chapters: TimelineChapter[] = [
               </Card>
             </Box>
           ))}
-        </Stack>
-
-        <Box sx={{ mt: 6, textAlign: 'center', position: 'relative', zIndex: 1 }}>
-          <Typography
-            variant="h6"
-            sx={{
-              color: '#64ffda',
-              fontStyle: 'italic',
-              mb: 2
-            }}
-          >
-            "Life is a journey, not a destination"
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: 'text.secondary',
-              maxWidth: 600,
-              mx: 'auto'
-            }}
-          >
-            Each milestone has shaped who I am today - from being a dedicated father and student, 
-            to serving communities, pivoting to technology, teaching others, and now engineering 
-            solutions while building a life in Minnesota. The journey continues...
-          </Typography>
-        </Box>
+        </Stack>        
       </Container>
     </PageLayout>
     </Box>
