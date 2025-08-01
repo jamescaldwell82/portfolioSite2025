@@ -33,7 +33,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
           gutterBottom
           sx={{ 
             mb: { xs: 3, md: 6 },
-            textAlign: { xs: 'center', md: 'left' },
+            textAlign: { xs: 'center', md: 'center' },
             background: 'linear-gradient(45deg, #fff 30%, #ccc 90%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
