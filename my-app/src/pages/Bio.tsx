@@ -228,7 +228,7 @@ const chapters: TimelineChapter[] = [
             fontSize: '1.1rem'
           }}
         >
-          Follow the journey through the chapters of my life
+          Follow the journey through<br/>the chapters of my life
         </Typography>
 
         <Stack spacing={4}>
