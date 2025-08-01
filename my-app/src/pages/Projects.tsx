@@ -6,7 +6,7 @@ const Projects: React.FC = () => {
     <ComingSoon 
       featureName="Projects"
       description="I'm currently curating and documenting my best work to showcase here. This section will feature detailed project breakdowns, live demos, source code, and the technologies I've used to bring ideas to life."
-      estimatedCompletion="Coming Soon"
+      estimatedCompletion="8/3/2025"
     />
   );
 };
