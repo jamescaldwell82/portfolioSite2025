@@ -105,11 +105,11 @@ const chapters: TimelineChapter[] = [
   };
 
   return (
-    <PageLayout title="My Journey">
+    <Box sx={{ position: 'relative', minHeight: '100vh', width: '100%' }}>
       {/* Roadmap Background - Enhanced for mobile visibility */}
       <Box
         sx={{
-          position: 'absolute',
+          position: 'fixed',
           top: 0,
           left: 0,
           right: 0,
@@ -124,35 +124,47 @@ const chapters: TimelineChapter[] = [
         <svg
           width="100%"
           height="100%"
-          viewBox="0 0 800 1200"
+          viewBox="0 0 800 2000"
           preserveAspectRatio="none"
           style={{ position: 'absolute', top: 0, left: 0 }}
         >
-          {/* Main road path - thicker on mobile */}
+          {/* Main road path - extended and more winding */}
           <path
-            d="M 100 50 Q 300 150 500 200 Q 700 250 600 400 Q 500 550 200 600 Q 100 700 400 800 Q 700 900 500 1000 Q 300 1100 400 1150"
+            d="M 100 50 Q 300 150 500 250 Q 700 350 600 500 Q 500 650 200 750 Q 100 850 400 950 Q 700 1050 500 1200 Q 300 1350 450 1500 Q 600 1650 350 1800 Q 200 1900 400 1950"
             stroke="rgba(100, 255, 218, 0.4)"
             strokeWidth="12"
             fill="none"
             strokeDasharray="30,15"
           />
           
-          {/* Road markers/milestones - larger on mobile */}
+          {/* Road markers/milestones - distributed along the longer path */}
           <circle cx="150" cy="80" r="12" fill="rgba(100, 255, 218, 0.6)" />
-          <circle cx="480" cy="220" r="12" fill="rgba(255, 107, 107, 0.6)" />
-          <circle cx="580" cy="380" r="12" fill="rgba(78, 205, 196, 0.6)" />
-          <circle cx="220" cy="620" r="12" fill="rgba(69, 183, 209, 0.6)" />
-          <circle cx="420" cy="820" r="12" fill="rgba(150, 206, 180, 0.6)" />
-          <circle cx="480" cy="1020" r="12" fill="rgba(254, 202, 87, 0.6)" />
+          <circle cx="480" cy="280" r="12" fill="rgba(255, 107, 107, 0.6)" />
+          <circle cx="580" cy="480" r="12" fill="rgba(78, 205, 196, 0.6)" />
+          <circle cx="220" cy="720" r="12" fill="rgba(69, 183, 209, 0.6)" />
+          <circle cx="420" cy="920" r="12" fill="rgba(150, 206, 180, 0.6)" />
+          <circle cx="480" cy="1180" r="12" fill="rgba(254, 202, 87, 0.6)" />
+          <circle cx="430" cy="1480" r="12" fill="rgba(100, 255, 218, 0.6)" />
           
-          {/* Decorative elements - more visible */}
+          {/* Additional milestone markers for longer journey */}
+          <circle cx="320" cy="600" r="8" fill="rgba(255, 255, 255, 0.4)" />
+          <circle cx="550" cy="800" r="8" fill="rgba(255, 255, 255, 0.4)" />
+          <circle cx="300" cy="1000" r="8" fill="rgba(255, 255, 255, 0.4)" />
+          <circle cx="520" cy="1320" r="8" fill="rgba(255, 255, 255, 0.4)" />
+          <circle cx="380" cy="1620" r="8" fill="rgba(255, 255, 255, 0.4)" />
+          
+          {/* Decorative elements - scattered throughout the journey */}
           <rect x="50" y="30" width="25" height="20" fill="rgba(255, 255, 255, 0.15)" rx="3" />
           <rect x="750" y="200" width="20" height="25" fill="rgba(255, 255, 255, 0.15)" rx="3" />
           <rect x="30" y="500" width="30" height="18" fill="rgba(255, 255, 255, 0.15)" rx="3" />
           <rect x="700" y="700" width="22" height="22" fill="rgba(255, 255, 255, 0.15)" rx="3" />
           <rect x="200" y="950" width="28" height="20" fill="rgba(255, 255, 255, 0.15)" rx="3" />
+          <rect x="600" y="1200" width="24" height="18" fill="rgba(255, 255, 255, 0.15)" rx="3" />
+          <rect x="100" y="1400" width="26" height="22" fill="rgba(255, 255, 255, 0.15)" rx="3" />
+          <rect x="650" y="1600" width="20" height="24" fill="rgba(255, 255, 255, 0.15)" rx="3" />
+          <rect x="250" y="1800" width="32" height="16" fill="rgba(255, 255, 255, 0.15)" rx="3" />
           
-          {/* Additional path decorations - more visible */}
+          {/* Additional path decorations - more scattered */}
           <path
             d="M 50 100 Q 150 120 250 140"
             stroke="rgba(255, 255, 255, 0.1)"
@@ -171,8 +183,28 @@ const chapters: TimelineChapter[] = [
             strokeWidth="3"
             fill="none"
           />
+          <path
+            d="M 500 1100 Q 600 1120 700 1150"
+            stroke="rgba(255, 255, 255, 0.1)"
+            strokeWidth="3"
+            fill="none"
+          />
+          <path
+            d="M 150 1300 Q 250 1320 350 1340"
+            stroke="rgba(255, 255, 255, 0.1)"
+            strokeWidth="3"
+            fill="none"
+          />
+          <path
+            d="M 450 1550 Q 550 1570 650 1590"
+            stroke="rgba(255, 255, 255, 0.1)"
+            strokeWidth="3"
+            fill="none"
+          />
         </svg>
       </Box>
+
+      <PageLayout title="My Journey">
 
       <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1 }}>
         <Typography 
@@ -502,6 +534,7 @@ const chapters: TimelineChapter[] = [
         </Box>
       </Container>
     </PageLayout>
+    </Box>
   );
 };
 
