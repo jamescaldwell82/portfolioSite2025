@@ -217,19 +217,7 @@ const chapters: TimelineChapter[] = [
           }}
         >
           Life Roadmap
-        </Typography>
-        
-        <Typography 
-          variant="body1" 
-          sx={{ 
-            textAlign: 'center', 
-            mb: 6,
-            color: 'text.secondary',
-            fontSize: '1.1rem'
-          }}
-        >
-          Follow the journey through<br/>the chapters of my life
-        </Typography>
+        </Typography>       
 
         <Stack spacing={4}>
           {chapters.map((chapter, index) => (
