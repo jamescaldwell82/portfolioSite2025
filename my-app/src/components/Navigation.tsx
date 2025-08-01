@@ -110,11 +110,47 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthModalOpen }) => {
           {item.label}
         </Button>
       ))}
+      
+      {/* Desktop Sign In / User Profile */}
+      {user ? (
+        <Box sx={{ ml: 1 }}>
+          <UserProfile />
+        </Box>
+      ) : (
+        <Button
+          onClick={onAuthModalOpen}
+          color="inherit"
+          startIcon={<LoginIcon />}
+          sx={{
+            backgroundColor: 'transparent',
+            color: '#fff',
+            fontSize: { md: '0.875rem', lg: '1rem' },
+            px: { md: 1, lg: 2 },
+            py: 1,
+            minWidth: 'auto',
+            borderRadius: '8px',
+            border: '2px solid transparent',
+            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)',
+            ml: 1,
+            '&:hover': {
+              backgroundColor: 'rgba(100, 255, 218, 0.3)',
+              color: '#000',
+              border: '2px solid #000',
+              textShadow: 'none',
+              transform: 'translateY(-1px)',
+            },
+            transition: 'all 0.3s ease'
+          }}
+        >
+          Sign In
+        </Button>
+      )}
     </Box>
   );
 
   const renderMobileNav = () => (
     <>
+      {/* Mobile Menu Button */}
       <IconButton
         color="inherit"
         onClick={handleMobileMenuOpen}
@@ -137,6 +173,8 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthModalOpen }) => {
       >
         <MenuIcon />
       </IconButton>
+      
+      {/* Mobile Menu */}
       <Menu
         anchorEl={mobileMenuAnchor}
         open={Boolean(mobileMenuAnchor)}
@@ -191,7 +229,7 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthModalOpen }) => {
           </MenuItem>
         ))}
         
-        {/* Add login/user profile to mobile menu */}
+        {/* User Profile or Sign In option in mobile menu */}
         {user ? (
           <MenuItem 
             onClick={() => {
@@ -203,9 +241,7 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthModalOpen }) => {
         ) : (
           <MenuItem
             onClick={() => {
-              // Open auth modal first, then close menu
               onAuthModalOpen();
-              // Delay closing the menu to allow modal to open
               setTimeout(() => {
                 handleMobileMenuClose();
               }, 100);
@@ -279,13 +315,6 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthModalOpen }) => {
 
         {renderDesktopNav()}
         {renderMobileNav()}
-
-        {/* Show UserProfile only on desktop when logged in */}
-        {user && (
-          <Box sx={{ ml: { xs: 1, md: 2 }, display: { xs: 'none', md: 'block' } }}>
-            <UserProfile />
-          </Box>
-        )}
       </Toolbar>
     </AppBar>
     </>
