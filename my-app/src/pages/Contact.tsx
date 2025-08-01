@@ -6,7 +6,7 @@ const Contact: React.FC = () => {
     <ComingSoon 
       featureName="Contact"
       description="I'm building an interactive contact experience with multiple ways to connect. This will include contact forms, social media links, and professional networking options to make it easy for you to reach out."
-      estimatedCompletion="Coming Soon"
+      estimatedCompletion="8/2/2025"
     />
   );
 };
