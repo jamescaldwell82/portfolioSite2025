@@ -115,10 +115,15 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthModalOpen }) => {
           display: { xs: 'block', md: 'none' },
           color: '#fff',
           filter: 'drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.8))',
+          backgroundColor: 'transparent',
           '&:hover': {
-            backgroundColor: 'rgba(100, 255, 218, 0.3)',
-            color: '#000',
-            filter: 'none'
+            backgroundColor: 'transparent',
+            color: '#64ffda',
+            filter: 'drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.8))'
+          },
+          '&:focus': {
+            backgroundColor: 'transparent',
+            outline: 'none'
           },
           transition: 'all 0.3s ease'
         }}
@@ -129,14 +134,28 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthModalOpen }) => {
         anchorEl={mobileMenuAnchor}
         open={Boolean(mobileMenuAnchor)}
         onClose={handleMobileMenuClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
         PaperProps={{
           sx: {
             mt: 1,
-            minWidth: 200,
+            minWidth: 250,
+            maxHeight: '100vh',
             backgroundColor: '#2d2d2d',
-            border: '1px solid rgba(100, 255, 218, 0.2)',
+            borderRadius: '12px',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
             '& .MuiMenuItem-root': {
               color: 'white',
+              py: 1.5,
+              px: 2,
+              borderRadius: '8px',
+              margin: '4px 8px',
               '&:hover': {
                 backgroundColor: 'rgba(100, 255, 218, 0.15)',
                 color: '#64ffda'
@@ -164,6 +183,37 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthModalOpen }) => {
             {item.label}
           </MenuItem>
         ))}
+        
+        {/* Add login/user profile to mobile menu */}
+        {user ? (
+          <MenuItem 
+            onClick={() => {
+              // Don't close menu immediately for user profile interactions
+            }}
+          >
+            <UserProfile />
+          </MenuItem>
+        ) : (
+          <MenuItem
+            onClick={() => {
+              // Open auth modal first, then close menu
+              onAuthModalOpen();
+              // Delay closing the menu to allow modal to open
+              setTimeout(() => {
+                handleMobileMenuClose();
+              }, 100);
+            }}
+            sx={{
+              '&:hover': {
+                backgroundColor: 'rgba(100, 255, 218, 0.15)',
+                color: '#64ffda'
+              }
+            }}
+          >
+            <LoginIcon sx={{ mr: 1 }} />
+            Sign In
+          </MenuItem>
+        )}
       </Menu>
     </>
   );
@@ -223,39 +273,12 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthModalOpen }) => {
         {renderDesktopNav()}
         {renderMobileNav()}
 
-        <Box sx={{ ml: { xs: 1, md: 2 } }}>
-          {user ? (
+        {/* Show UserProfile only on desktop when logged in */}
+        {user && (
+          <Box sx={{ ml: { xs: 1, md: 2 }, display: { xs: 'none', md: 'block' } }}>
             <UserProfile />
-          ) : (
-            <Button
-              color="inherit"
-              startIcon={<LoginIcon />}
-              onClick={onAuthModalOpen}
-              sx={{ 
-                fontSize: { xs: '0.875rem', md: '1rem' },
-                px: { xs: 1, md: 2 },
-                color: '#fff',
-                borderRadius: '8px',
-                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)',
-                '&:hover': {
-                  backgroundColor: 'rgba(100, 255, 218, 0.3)',
-                  color: '#000',
-                  textShadow: 'none',
-                  border: '2px solid #000',
-                  transform: 'translateY(-1px)',
-                },
-                transition: 'all 0.3s ease'
-              }}
-            >
-              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
-                Sign In
-              </Box>
-              <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>
-                Login
-              </Box>
-            </Button>
-          )}
-        </Box>
+          </Box>
+        )}
       </Toolbar>
     </AppBar>
     </>

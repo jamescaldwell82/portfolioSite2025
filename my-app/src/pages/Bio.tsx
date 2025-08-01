@@ -37,7 +37,7 @@ const chapters: TimelineChapter[] = [
     {
         id: 1,
         period: '2005-2011',
-        title: 'School completion/Stay-at-home dad',
+        title: 'Undergrad & Family',
         icon: <School />,
         color: '#64ffda',
         content: "During this chapter, I spent my energy on taking care of my 3 sons as they were in their newborn-preschool ages. It was honestly one of the more rewarding chapters of my life, getting to mobilize our family by allowing my wife to begin her career while watching the everyday journey of each my sons maturing into boys and subsequently into men. Meanwhile, I was able to complete my undergraduate studies with honors, achieving a bachelor's degree in Psychology."
@@ -53,7 +53,7 @@ const chapters: TimelineChapter[] = [
     {
         id: 3,
         period: '2018-19',
-        title: 'Career change to Software Development',
+        title: 'Career change',
         icon: <Code />,
         color: '#4ecdc4',
         content: (
