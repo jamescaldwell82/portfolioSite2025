@@ -54,65 +54,88 @@ const Home: React.FC = () => {
         padding: 0,
       }}
     >
-      {/* Background Image Placeholders */}
+      {/* Animated Roadmap Background */}
       <Box
         sx={{
           position: 'absolute',
-          top: '10%',
-          right: '10%',
-          width: { xs: '120px', sm: '200px', md: '300px' },
-          height: { xs: '120px', sm: '200px', md: '300px' },
-          backgroundColor: 'rgba(255, 255, 255, 0.05)',
-          borderRadius: '20px',
-          border: '2px dashed rgba(255, 255, 255, 0.2)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 0
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          overflow: 'hidden',
+          zIndex: 0,
+          opacity: 0.15,
+          pointerEvents: 'none'
         }}
       >
-        <Typography
-          variant="body2"
-          sx={{
-            m: 0,
-            color: 'rgba(255, 255, 255, 0.3)',
-            textAlign: 'center',
-            fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1rem' }
-          }}
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 800 1200"
+          preserveAspectRatio="none"
+          style={{ position: 'absolute', top: 0, left: 0 }}
         >
-          Image Placeholder
-        </Typography>
+          {/* Main road path */}
+          <path
+            id="roadPath"
+            d="M 100 50 Q 300 150 500 250 Q 700 350 600 500 Q 500 650 200 750 Q 100 850 400 950 Q 700 1050 500 1150"
+            stroke="rgba(100, 255, 218, 0.3)"
+            strokeWidth="8"
+            fill="none"
+            strokeDasharray="20,10"
+          />
+          
+          {/* Static milestone markers */}
+          <circle cx="150" cy="80" r="8" fill="rgba(100, 255, 218, 0.4)" />
+          <circle cx="480" cy="280" r="8" fill="rgba(255, 107, 107, 0.4)" />
+          <circle cx="580" cy="480" r="8" fill="rgba(78, 205, 196, 0.4)" />
+          <circle cx="220" cy="720" r="8" fill="rgba(69, 183, 209, 0.4)" />
+          <circle cx="420" cy="920" r="8" fill="rgba(150, 206, 180, 0.4)" />
+          <circle cx="480" cy="1120" r="8" fill="rgba(254, 202, 87, 0.4)" />
+          
+          {/* Animated traveling node */}
+          <circle r="6" fill="#64ffda" opacity="0.8">
+            <animateMotion
+              dur="15s"
+              repeatCount="indefinite"
+              rotate="auto"
+            >
+              <mpath href="#roadPath" />
+            </animateMotion>
+            {/* Pulsing effect */}
+            <animate
+              attributeName="r"
+              values="6;10;6"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="opacity"
+              values="0.8;1;0.8"
+              dur="2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          
+          {/* Trailing glow effect */}
+          <circle r="12" fill="#64ffda" opacity="0.2">
+            <animateMotion
+              dur="15s"
+              repeatCount="indefinite"
+              rotate="auto"
+            >
+              <mpath href="#roadPath" />
+            </animateMotion>
+          </circle>
+          
+          {/* Decorative elements */}
+          <rect x="50" y="30" width="20" height="15" fill="rgba(255, 255, 255, 0.1)" rx="2" />
+          <rect x="750" y="200" width="15" height="20" fill="rgba(255, 255, 255, 0.1)" rx="2" />
+          <rect x="30" y="500" width="25" height="12" fill="rgba(255, 255, 255, 0.1)" rx="2" />
+          <rect x="700" y="700" width="18" height="18" fill="rgba(255, 255, 255, 0.1)" rx="2" />
+          <rect x="200" y="950" width="22" height="15" fill="rgba(255, 255, 255, 0.1)" rx="2" />
+        </svg>
       </Box>
-
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: '12%',
-          left: '5%',
-          width: { xs: '100px', sm: '150px', md: '250px' },
-          height: { xs: '100px', sm: '150px', md: '250px' },
-          backgroundColor: 'rgba(255, 255, 255, 0.05)',
-          borderRadius: '20px',
-          border: '2px dashed rgba(255, 255, 255, 0.2)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 0
-        }}
-      >
-        <Typography
-          variant="body2"
-          sx={{
-            mt: 1,
-            color: 'rgba(255, 255, 255, 0.3)',
-            textAlign: 'center',
-            fontSize: { xs: '0.7rem', sm: '0.8rem', md: '1rem' }
-          }}
-        >
-          Image Placeholder
-        </Typography>
-      </Box>
-
       {/* Main Content */}
       <Container
         maxWidth="lg"

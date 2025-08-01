@@ -130,12 +130,60 @@ const chapters: TimelineChapter[] = [
         >
           {/* Main road path - extended and more winding */}
           <path
+            id="bioRoadPath"
             d="M 100 50 Q 300 150 500 250 Q 700 350 600 500 Q 500 650 200 750 Q 100 850 400 950 Q 700 1050 500 1200 Q 300 1350 450 1500 Q 600 1650 350 1800 Q 200 1900 400 1950"
             stroke="rgba(100, 255, 218, 0.4)"
             strokeWidth="12"
             fill="none"
             strokeDasharray="30,15"
           />
+          
+          {/* Animated traveling node */}
+          <circle r="8" fill="#64ffda" opacity="0.9">
+            <animateMotion
+              dur="25s"
+              repeatCount="indefinite"
+              rotate="auto"
+            >
+              <mpath href="#bioRoadPath" />
+            </animateMotion>
+            {/* Pulsing effect */}
+            <animate
+              attributeName="r"
+              values="8;12;8"
+              dur="2.5s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="opacity"
+              values="0.9;1;0.9"
+              dur="2.5s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          
+          {/* Trailing glow effect */}
+          <circle r="16" fill="#64ffda" opacity="0.15">
+            <animateMotion
+              dur="25s"
+              repeatCount="indefinite"
+              rotate="auto"
+            >
+              <mpath href="#bioRoadPath" />
+            </animateMotion>
+          </circle>
+          
+          {/* Secondary trailing glow */}
+          <circle r="24" fill="#64ffda" opacity="0.08">
+            <animateMotion
+              dur="25s"
+              repeatCount="indefinite"
+              rotate="auto"
+              begin="0.5s"
+            >
+              <mpath href="#bioRoadPath" />
+            </animateMotion>
+          </circle>
           
           {/* Road markers/milestones - distributed along the longer path */}
           <circle cx="150" cy="80" r="12" fill="rgba(100, 255, 218, 0.6)" />
