@@ -1,8 +1,21 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import { isFeatureEnabled } from '../lib/featureFlags';
+import ComingSoon from '../components/ComingSoon';
 import PageLayout from '../components/PageLayout';
+import { Typography } from '@mui/material';
 
 const Blog: React.FC = () => {
+  // Check if blog feature is enabled
+  if (!isFeatureEnabled('blogEnabled')) {
+    return (
+      <ComingSoon 
+        featureName="Blog"
+        description="I'm working on creating engaging blog content where I'll share insights about software development, technical training experiences, and career journey stories."
+        estimatedCompletion="Coming Soon"
+      />
+    );
+  }
+
   return (
     <PageLayout title="Blog">
       <Typography variant="body1" paragraph>

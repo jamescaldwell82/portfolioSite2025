@@ -1,8 +1,21 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import { isFeatureEnabled } from '../lib/featureFlags';
+import ComingSoon from '../components/ComingSoon';
 import PageLayout from '../components/PageLayout';
+import { Typography } from '@mui/material';
 
 const Learn: React.FC = () => {
+  // Check if learn feature is enabled
+  if (!isFeatureEnabled('learnEnabled')) {
+    return (
+      <ComingSoon 
+        featureName="Learn"
+        description="I'm developing a comprehensive learning resources section featuring tutorials, recommended courses, and educational content for aspiring developers and those looking to advance their technical skills."
+        estimatedCompletion="Coming Soon"
+      />
+    );
+  }
+
   return (
     <PageLayout title="Learn">
       <Typography variant="body1" paragraph>

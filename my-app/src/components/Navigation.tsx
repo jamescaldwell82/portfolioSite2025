@@ -15,6 +15,7 @@ import {
 } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../lib/AuthProvider';
+import { isFeatureEnabled } from '../lib/featureFlags';
 import UserProfile from './UserProfile';
 
 // Keyframes for moving gradient animation
@@ -41,15 +42,21 @@ const Navigation: React.FC<NavigationProps> = ({ onAuthModalOpen }) => {
   const location = useLocation();
   const [mobileMenuAnchor, setMobileMenuAnchor] = useState<null | HTMLElement>(null);
 
-  const navigationItems = [
+  // Base navigation items
+  const allNavigationItems = [
     { label: 'Home', path: '/' },
     { label: 'Bio', path: '/bio' },
     { label: 'Resume', path: '/resume' },
     { label: 'Projects', path: '/projects' },
-    { label: 'Blog', path: '/blog' },
-    { label: 'Learn', path: '/learn' },
+    { label: 'Blog', path: '/blog', requiresFeature: 'blogEnabled' as const },
+    { label: 'Learn', path: '/learn', requiresFeature: 'learnEnabled' as const },
     { label: 'Contact', path: '/contact' },
   ];
+
+  // Filter navigation items based on feature flags
+  const navigationItems = allNavigationItems.filter(item => 
+    !item.requiresFeature || isFeatureEnabled(item.requiresFeature)
+  );
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMenuAnchor(event.currentTarget);
