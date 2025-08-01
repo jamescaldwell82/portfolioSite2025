@@ -219,7 +219,7 @@ const chapters: TimelineChapter[] = [
             "Life is a journey, not a destination"
           </Typography>
           <Typography
-            variant="h4"
+            variant="h6"
             sx={{
               color: 'text.secondary',
               maxWidth: 600,
