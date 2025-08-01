@@ -15,7 +15,7 @@ import {
   Engineering as EngineeringIcon,
   Handyman as HandymanIcon
 } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PageLayout from './PageLayout';
 
 interface ComingSoonProps {
@@ -286,6 +286,14 @@ const ComingSoon: React.FC<ComingSoonProps> = ({
                 >
                   Go to Home
                 </Button>
+                <Button
+                  component={Link}
+                  to="/oops"
+                  variant="text"
+                  sx={{
+                    color: '#64ffda',
+                    '&:hover': { color: '#4ecdc4' }
+                  }}>Or you can play a game! 🎮</Button>
               </Stack>
             </CardContent>
           </Card>
