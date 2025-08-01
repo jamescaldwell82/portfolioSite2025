@@ -269,7 +269,8 @@ const Resume: React.FC = () => {
           sx={{ 
             p: 4, 
             mb: 4, 
-            background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
+            background: 'rgba(26, 26, 26, 0.8)', // Semi-transparent to show roadmap background
+            backdropFilter: 'blur(10px)', // Add blur effect
             border: '1px solid rgba(100, 255, 218, 0.3)'
           }}
         >
@@ -342,7 +343,7 @@ const Resume: React.FC = () => {
         </Paper>
 
         {/* Professional Summary */}
-        <Card sx={{ mb: 4, bgcolor: '#1a1a1a', border: '1px solid rgba(255,255,255,0.1)' }}>
+        <Card sx={{ mb: 4, bgcolor: 'rgba(26, 26, 26, 0.8)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }}>
           <CardContent>
             <Typography variant="h5" sx={{ color: '#64ffda', mb: 2 }}>
               Professional Summary
@@ -354,7 +355,7 @@ const Resume: React.FC = () => {
         </Card>
 
         {/* Work Experience */}
-        <Card sx={{ mb: 4, bgcolor: '#1a1a1a', border: '1px solid rgba(255,255,255,0.1)' }}>
+        <Card sx={{ mb: 4, bgcolor: 'rgba(26, 26, 26, 0.8)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }}>
           <CardContent>
             <Typography variant="h5" sx={{ color: '#64ffda', mb: 3 }}>
               <Work sx={{ mr: 1, verticalAlign: 'middle' }} />
@@ -404,7 +405,7 @@ const Resume: React.FC = () => {
         </Card>
 
         {/* Education */}
-        <Card sx={{ mb: 4, bgcolor: '#1a1a1a', border: '1px solid rgba(255,255,255,0.1)' }}>
+        <Card sx={{ mb: 4, bgcolor: 'rgba(26, 26, 26, 0.8)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }}>
           <CardContent>
             <Typography variant="h5" sx={{ color: '#64ffda', mb: 3 }}>
               <School sx={{ mr: 1, verticalAlign: 'middle' }} />
@@ -430,7 +431,7 @@ const Resume: React.FC = () => {
         </Card>
 
         {/* Skills */}
-        <Card sx={{ mb: 4, bgcolor: '#1a1a1a', border: '1px solid rgba(255,255,255,0.1)' }}>
+        <Card sx={{ mb: 4, bgcolor: 'rgba(26, 26, 26, 0.8)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }}>
           <CardContent>
             <Typography variant="h5" sx={{ color: '#64ffda', mb: 3 }}>
               <Code sx={{ mr: 1, verticalAlign: 'middle' }} />
@@ -469,7 +470,7 @@ const Resume: React.FC = () => {
 
         {/* Certifications */}
         {resumeData.certifications.length > 0 && (
-          <Card sx={{ mb: 4, bgcolor: '#1a1a1a', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <Card sx={{ mb: 4, bgcolor: 'rgba(26, 26, 26, 0.8)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }}>
             <CardContent>
               <Typography variant="h5" sx={{ color: '#64ffda', mb: 3 }}>
                 Certifications

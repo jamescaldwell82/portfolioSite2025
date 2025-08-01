@@ -9,6 +9,7 @@ import { useAuth } from './lib/AuthProvider'
 import Navigation from './components/Navigation'
 import AuthModal from './components/AuthModal'
 import PageTransition from './components/PageTransition'
+import AnimatedRoadmapBackground from './components/AnimatedRoadmapBackground'
 
 // Import page components
 import Home from './pages/Home'
@@ -38,11 +39,26 @@ function App() {
   }
 
   return (
-    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', width: '100%', margin: 0, padding: 0 }}>
+    <Box sx={{ 
+      bgcolor: '#000', // Dark background for the animated roadmap
+      minHeight: '100vh', 
+      width: '100%', 
+      margin: 0, 
+      padding: 0 
+    }}>
+      {/* Site-wide animated roadmap background */}
+      <AnimatedRoadmapBackground intensity="normal" />
+      
       <Navigation onAuthModalOpen={() => setAuthModalOpen(true)} />
       
       <PageTransition>
-        <Box key={location.pathname} sx={{ width: '100%', margin: 0, padding: 0 }}>
+        <Box key={location.pathname} sx={{ 
+          width: '100%', 
+          margin: 0, 
+          padding: 0,
+          position: 'relative',
+          zIndex: 1 // Ensure content is above background
+        }}>
           {location.pathname === '/' && <Home />}
           {location.pathname === '/bio' && <Bio />}
           {location.pathname === '/resume' && <Resume />}

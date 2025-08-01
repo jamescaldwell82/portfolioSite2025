@@ -17,7 +17,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
     <Box sx={{ 
       width: '100%', 
       minHeight: 'calc(100vh - 72px)', 
-      bgcolor: 'background.default',
+      // Removed bgcolor to allow site-wide animated roadmap background to show through
       pt: { xs: 3, md: 6 },
       pb: { xs: 4, md: 8 }
     }}>
