@@ -19,6 +19,7 @@ import Projects from './pages/Projects'
 import Blog from './pages/Blog'
 import Learn from './pages/Learn'
 import Contact from './pages/Contact'
+import NotFound from './pages/NotFound'
 
 function App() {
   const [authModalOpen, setAuthModalOpen] = useState(false)
@@ -66,6 +67,8 @@ function App() {
           {location.pathname === '/blog' && <Blog />}
           {location.pathname === '/learn' && <Learn />}
           {location.pathname === '/contact' && <Contact />}
+          {/* 404 - Catch all unmatched routes */}
+          {!['/bio', '/resume', '/projects', '/blog', '/learn', '/contact', '/'].includes(location.pathname) && <NotFound />}
         </Box>
       </PageTransition>
 
