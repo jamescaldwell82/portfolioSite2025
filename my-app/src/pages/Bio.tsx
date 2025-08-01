@@ -116,7 +116,7 @@ const chapters: TimelineChapter[] = [
           bottom: 0,
           overflow: 'hidden',
           zIndex: 0,
-          opacity: { xs: 0.25, md: 0.15 }, // Higher opacity on mobile for better visibility
+          opacity: { xs: 0.4, md: 0.15 }, // Much brighter on mobile
           pointerEvents: 'none'
         }}
       >
@@ -132,14 +132,14 @@ const chapters: TimelineChapter[] = [
           <path
             id="bioRoadPath"
             d="M 100 50 Q 300 150 500 250 Q 700 350 600 500 Q 500 650 200 750 Q 100 850 400 950 Q 700 1050 500 1200 Q 300 1350 450 1500 Q 600 1650 350 1800 Q 200 1900 400 1950"
-            stroke="rgba(100, 255, 218, 0.4)"
-            strokeWidth="12"
+            stroke="rgba(100, 255, 218, 0.6)"
+            strokeWidth="14"
             fill="none"
             strokeDasharray="30,15"
           />
           
-          {/* Animated traveling node */}
-          <circle r="8" fill="#64ffda" opacity="0.9">
+          {/* Animated traveling node - bigger and brighter */}
+          <circle r="10" fill="#64ffda" opacity="1">
             <animateMotion
               dur="25s"
               repeatCount="indefinite"
@@ -150,20 +150,20 @@ const chapters: TimelineChapter[] = [
             {/* Pulsing effect */}
             <animate
               attributeName="r"
-              values="8;12;8"
+              values="10;16;10"
               dur="2.5s"
               repeatCount="indefinite"
             />
             <animate
               attributeName="opacity"
-              values="0.9;1;0.9"
+              values="1;0.8;1"
               dur="2.5s"
               repeatCount="indefinite"
             />
           </circle>
           
-          {/* Trailing glow effect */}
-          <circle r="16" fill="#64ffda" opacity="0.15">
+          {/* Trailing glow effect - larger and brighter */}
+          <circle r="20" fill="#64ffda" opacity="0.25">
             <animateMotion
               dur="25s"
               repeatCount="indefinite"
@@ -173,8 +173,8 @@ const chapters: TimelineChapter[] = [
             </animateMotion>
           </circle>
           
-          {/* Secondary trailing glow */}
-          <circle r="24" fill="#64ffda" opacity="0.08">
+          {/* Secondary trailing glow - larger */}
+          <circle r="30" fill="#64ffda" opacity="0.12">
             <animateMotion
               dur="25s"
               repeatCount="indefinite"
