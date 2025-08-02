@@ -5,7 +5,6 @@ import {
   TextField,
   Button,
   Paper,
-  Container,
   Avatar,
   Chip,
   Stack,
@@ -324,18 +323,27 @@ const Contact: React.FC = () => {
 
   return (
     <PageLayout>
-      <Container maxWidth="md" sx={{ py: 4 }}>
+      <Box sx={{ 
+        height: '100vh', 
+        display: 'flex', 
+        flexDirection: 'column',
+        px: { xs: 1, sm: 2 },
+        py: { xs: 1, sm: 2 }
+      }}>
         <Paper
           elevation={0}
           sx={{
-            height: '70vh',
+            flex: 1,
             display: 'flex',
             flexDirection: 'column',
             bgcolor: 'rgba(26, 26, 26, 0.8)',
             backdropFilter: 'blur(10px)',
             border: '1px solid rgba(100, 255, 218, 0.3)',
             borderRadius: '16px',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            minHeight: 0, // Important for flex child with scroll
+            width: { xs: '100%', md: '75%', lg: '60%' },
+            mx: 'auto' // Center the chat window
           }}
         >
           {/* Chat Header */}
@@ -637,27 +645,27 @@ const Contact: React.FC = () => {
         </Paper>
 
         {/* Contact Info Footer */}
-        <Box sx={{ mt: 3, textAlign: 'center' }}>
-          <Typography variant="body2" sx={{ color: '#ccc', mb: 2 }}>
+        <Box sx={{ py: 2, textAlign: 'center' }}>
+          <Typography variant="body2" sx={{ color: '#ccc', mb: 1 }}>
             Or reach out directly:
           </Typography>
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
-            spacing={2}
+            spacing={1}
             justifyContent="center"
             alignItems="center"
           >
             <Button
               startIcon={<EmailIcon />}
               href="mailto:james@example.com"
-              sx={{ color: '#64ffda' }}
+              sx={{ color: '#64ffda', fontSize: '0.8rem' }}
             >
               james@example.com
             </Button>
             <Button
               startIcon={<PhoneIcon />}
               href="tel:+1234567890"
-              sx={{ color: '#64ffda' }}
+              sx={{ color: '#64ffda', fontSize: '0.8rem' }}
             >
               (123) 456-7890
             </Button>
@@ -665,13 +673,13 @@ const Contact: React.FC = () => {
               startIcon={<LinkedInIcon />}
               href="https://linkedin.com/in/jamescaldwell"
               target="_blank"
-              sx={{ color: '#64ffda' }}
+              sx={{ color: '#64ffda', fontSize: '0.8rem' }}
             >
               LinkedIn
             </Button>
           </Stack>
         </Box>
-      </Container>
+      </Box>
     </PageLayout>
   );
 };
