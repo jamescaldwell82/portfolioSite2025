@@ -324,11 +324,11 @@ const Contact: React.FC = () => {
   return (
     <PageLayout>
       <Box sx={{ 
-        height: '100vh', 
+        height: { xs: '100vh', sm: '100vh' },
         display: 'flex', 
         flexDirection: 'column',
-        px: { xs: 1, sm: 2 },
-        py: { xs: 1, sm: 2 }
+        px: { xs: 0, sm: 2 },
+        py: { xs: 0, sm: 2 }
       }}>
         <Paper
           elevation={0}
@@ -338,8 +338,8 @@ const Contact: React.FC = () => {
             flexDirection: 'column',
             bgcolor: 'rgba(26, 26, 26, 0.8)',
             backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(100, 255, 218, 0.3)',
-            borderRadius: '16px',
+            border: { xs: 'none', sm: '1px solid rgba(100, 255, 218, 0.3)' },
+            borderRadius: { xs: 0, sm: '16px' },
             overflow: 'hidden',
             minHeight: 0, // Important for flex child with scroll
             width: { xs: '100%', md: '75%', lg: '60%' },
@@ -349,7 +349,7 @@ const Contact: React.FC = () => {
           {/* Chat Header */}
           <Box
             sx={{
-              p: 3,
+              p: { xs: 2, sm: 3 },
               bgcolor: 'rgba(100, 255, 218, 0.1)',
               borderBottom: '1px solid rgba(100, 255, 218, 0.2)',
               display: 'flex',
@@ -394,7 +394,7 @@ const Contact: React.FC = () => {
             sx={{
               flex: 1,
               overflowY: 'auto',
-              p: 2,
+              p: { xs: 1, sm: 2 },
               display: 'flex',
               flexDirection: 'column',
               gap: 2
@@ -533,7 +533,7 @@ const Contact: React.FC = () => {
           {conversationStep < 6 && !isSubmitting && (
             <Box
               sx={{
-                p: 2,
+                p: { xs: 1, sm: 2 },
                 borderTop: '1px solid rgba(100, 255, 218, 0.2)',
                 bgcolor: 'rgba(255, 255, 255, 0.05)'
               }}
@@ -596,7 +596,7 @@ const Contact: React.FC = () => {
           {isSubmitting && (
             <Box
               sx={{
-                p: 2,
+                p: { xs: 1, sm: 2 },
                 borderTop: '1px solid rgba(100, 255, 218, 0.2)',
                 bgcolor: 'rgba(255, 255, 255, 0.05)',
                 display: 'flex',
@@ -645,7 +645,12 @@ const Contact: React.FC = () => {
         </Paper>
 
         {/* Contact Info Footer */}
-        <Box sx={{ py: 2, textAlign: 'center' }}>
+        <Box sx={{ 
+          py: { xs: 1, sm: 2 }, 
+          px: { xs: 1, sm: 0 },
+          textAlign: 'center',
+          display: { xs: 'none', sm: 'block' } // Hide on mobile to save space
+        }}>
           <Typography variant="body2" sx={{ color: '#ccc', mb: 1 }}>
             Or reach out directly:
           </Typography>
