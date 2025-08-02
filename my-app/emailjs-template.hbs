@@ -1,0 +1,52 @@
+Subject: {{#if urgency}}{{#eq urgency "HIGH"}}🚀 URGENT: {{/eq}}{{/if}}New Contact: {{from_name}} - {{inquiry_type}}
+
+Hello James,
+
+You have received a new contact inquiry through your portfolio website!
+
+---
+
+📋 CONTACT DETAILS
+Name: {{from_name}}
+Company: {{from_company}}
+Inquiry Type: {{inquiry_type}}
+
+---
+
+📞 CONTACT INFORMATION
+Preferred Method: {{contact_method}}
+{{#if phone_preferred}}
+⚠️ PHONE PREFERRED: {{phone_preferred}}
+Phone Number: {{phone_number}}
+{{/if}}
+Contact Info: {{contact_info}}
+
+---
+
+💬 MESSAGE
+{{message_details}}
+
+---
+
+⏰ SUBMISSION DETAILS
+Submitted: {{timestamp}}
+{{#if urgency}}Priority Level: {{urgency}}{{/if}}
+
+---
+
+🎯 QUICK ACTIONS
+{{#eq contact_method "phone"}}
+• Call them back at: {{phone_number}}
+• Or reply via email to: {{reply_to}}
+{{else}}
+• Reply directly to: {{reply_to}}
+{{/eq}}
+
+{{#eq urgency "HIGH"}}
+⚡ This appears to be a hiring inquiry - consider responding within 24 hours!
+{{/eq}}
+
+---
+
+This message was sent from your portfolio contact form.
+Portfolio: https://jcaldwell.io
