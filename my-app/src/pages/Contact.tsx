@@ -13,7 +13,6 @@ import {
 } from '@mui/material';
 import {
   Send as SendIcon,
-  Phone as PhoneIcon,
   Email as EmailIcon,
   LinkedIn as LinkedInIcon
 } from '@mui/icons-material';

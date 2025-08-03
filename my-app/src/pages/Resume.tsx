@@ -12,8 +12,7 @@ import {
   IconButton,
   Tooltip,
   Alert,
-  CircularProgress,
-  Divider
+  CircularProgress
 } from '@mui/material';
 import { 
   Download as DownloadIcon,
