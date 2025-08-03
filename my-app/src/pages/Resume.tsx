@@ -89,23 +89,26 @@ const Resume: React.FC = () => {
         id: "1",
         company: "Quest Analytics, LLC",
         position: "Software Engineer",
-        location: "Kansas City, MO (Remote)",
+        location: "Overland Park, KS (Remote)",
         startDate: "2023",
         endDate: "Present",
         current: true,
         responsibilities: [
+          "Part of founding team for new outreach platform, seeing successful launch in 2023",
           "Develop and maintain outreach applications managing healthcare practitioner data",
-          "Implement performance tuning strategies for scalable applications",
-          "Apply clean code principles and design patterns for maintainable solutions",
-          "Collaborate with cross-functional teams to launch and grow the outreach platform"
+          "Improved page load times from ~45s to under 5s by optimizing API calls and implementing lazy load",
+          "Set a high standard for clean code principles and design patterns for maintainable solutions",
+          "Collaborate with cross-functional teams to launch and grow the outreach platform",
+          "Contribute to architecture discussions and code reviews to ensure quality and scalability",
+          "Implement unit tests and functional tests to ensure reliability and performance"
         ],
-        technologies: ["C#", "ASP.NET Core", "React", "SQL Server", "Azure"]
+        technologies: ["C#", "ASP.NET Core", "HotChocolate", "MassTransit", "T-SQL", "MongoDB", "Azure Blob Storage", "React", "TypeScript", "GraphQL", "React-Relay", "MUI", "Azure DevOps"]
       },
       {
         id: "2",
         company: "Centriq Training",
         position: "Technical Trainer & Co-Lead",
-        location: "Overland Park, KS",
+        location: "Kansas City, MO",
         startDate: "2019",
         endDate: "2023",
         current: false,
@@ -113,9 +116,11 @@ const Resume: React.FC = () => {
           "Instructed full-stack development bootcamp students in career transition",
           "Developed curriculum for ReactJS and ASP.NET Core technologies",
           "Mentored students through hands-on projects and career preparation",
-          "Achieved CompTIA CTT+ certification for technical training excellence"
+          "Achieved CompTIA CTT+ certification for technical training excellence",
+          "Collaborated with industry partners to enhance curriculum relevance",
+          "Led team of instructors to improve student outcomes and engagement"
         ],
-        technologies: ["React", "ASP.NET Core", "JavaScript", "C#", "SQL", "HTML/CSS"]
+        technologies: ["React", "ASP.NET Core", "ASP.NET MVC", "JavaScript", "C#", "SQL", "HTML/CSS", "Firebase", "Git", "Bootstrap", "jQuery"]
       },
       {
         id: "3",
@@ -127,14 +132,20 @@ const Resume: React.FC = () => {
         current: false,
         responsibilities: [
           "Built and maintained bristolseafoodgrill.com and devonseafood.com",
-          "Developed responsive web applications using ASP.NET MVC",
-          "Collaborated with marketing team on digital presence strategy"
+          "Developed responsive web applications using ASP.NET WebForms",
+          "Implemented responsive design principles to create new sites in a CMS-driven environment",
+          "Collaborated with marketing team on digital presence strategy",
+          "Implemented SEO best practices to improve site visibility",
+          "Ensured cross-browser compatibility and accessibility standards",
+          "Collaborated with design team to modify and adapt initial designs into functional web applications",
+          "Successfully launched new sites within expected deadlines",
+          "During extension to my contract, I successfully wrote a SQL Stored Procedure for a `Find the closest restaurant` feature, improving user experience and search functionality"
         ],
-        technologies: ["ASP.NET MVC", "C#", "JavaScript", "SQL Server", "HTML/CSS"]
+        technologies: ["ASP.NET MVC", "ASP.NET WebForms", "DotNetNuke", "Evoq CMS" ,"C#", "JavaScript", "SQL Server", "HTML/CSS"]
       },
       {
         id: "4",
-        company: "Community Christian Church",
+        company: "Christ Lutheran Church",
         position: "Children's Ministry Coordinator",
         location: "Overland Park, KS",
         startDate: "2011",
@@ -144,7 +155,9 @@ const Resume: React.FC = () => {
           "Led team of 100+ volunteers in children's ministry programs",
           "Created and implemented weekly curriculum for various age groups",
           "Developed volunteer recruitment and training programs",
-          "Served as day camp director, building program from conception to execution"
+          "Grew summer camp program from 100 to 200+ participants",
+          "Worked with parents to ensure a positive experience for children and families",
+          "Collaborated with church leadership to align programs with community needs"
         ],
         technologies: []
       }
@@ -160,38 +173,41 @@ const Resume: React.FC = () => {
       },
       {
         id: "2",
-        institution: "Mid-America Nazarene University",
+        institution: "Grace University",
         degree: "Bachelor of Arts",
         field: "Psychology",
         graduationDate: "2011",
-        honors: "Magna Cum Laude"
+        honors: "Graduated with Honors"
       }
     ],
     skills: [
       {
         category: "Programming Languages",
-        skills: ["C#", "JavaScript", "TypeScript", "Python", "SQL"]
+        skills: ["C#", "JavaScript", "TypeScript", "SQL"]
       },
       {
         category: "Frameworks & Libraries",
-        skills: ["ASP.NET Core", "React", "Node.js", "Express", "Material-UI"]
+        skills: ["ASP.NET Core", "React", "Node.js", "Express", "Material-UI", "Entity Framework Core", "Rest APIs", "jQuery", "DotNetNuke", "Evoq CMS", "HotChocolate"]
       },
       {
         category: "Databases",
-        skills: ["SQL Server", "PostgreSQL", "Firebase", "MongoDB"]
+        skills: ["SQL Server", "NoSQL", "Firebase", "MongoDB", "Azure Blob Storage"]
       },
       {
         category: "Cloud & DevOps",
-        skills: ["Azure", "AWS", "Docker", "Git", "CI/CD"]
+        skills: ["Azure", "Azure DevOps", "Docker", "Git", "CI/CD", "Figma"]
+      },
+      {
+        category: "Testing & Monitoring",
+        skills: ["Unit Testing", "XUnit", "DataDog", "Postman", "Swagger", "Full Story"]
       },
       {
         category: "Soft Skills",
-        skills: ["Technical Training", "Team Leadership", "Mentoring", "Project Management"]
+        skills: ["Technical Training", "Team Leadership", "Mentoring", "Project Management", "Problem Solving", "Communication", "Collaboration", "Attention to Detail", "Adaptability", "Self-Starter"]
       }
     ],
     certifications: [
-      "CompTIA CTT+ (Certified Technical Trainer)",
-      "Microsoft Certified: Azure Fundamentals"
+      "CompTIA CTT+ (Certified Technical Trainer)"
     ],
     lastUpdated: new Date().toLocaleDateString()
   };

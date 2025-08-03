@@ -35,24 +35,26 @@ const projectsData: Project[] = [
     title: 'Bristol Seafood Grill',
     url: 'https://bristolseafoodgrill.com',
     image: 'https://via.placeholder.com/400x250/1976d2/ffffff?text=Bristol+Seafood+Grill',
-    technologies: ['WordPress', 'PHP', 'MySQL', 'Responsive Design'],
+    technologies: ["ASP.NET MVC", "ASP.NET WebForms", "DotNetNuke", "Evoq CMS" ,"C#", "JavaScript", "SQL Server", "HTML/CSS"],
     productWriteup: {
-      purpose: 'Create an elegant dining experience online that reflects the upscale atmosphere of Bristol Seafood Grill. The site needed to showcase the menu, ambiance, and reservation system while maintaining the sophisticated brand image.',
+      purpose: 'Create an elegant dining experience online that reflects the upscale atmosphere of Bristol Seafood Grill. The multi-location restaurant needed to showcase the menu, ambiance, and reservation system while maintaining the sophisticated brand image.',
       learnings: [
-        'Importance of visual hierarchy in restaurant websites',
-        'Menu presentation significantly impacts customer decision-making',
-        'Mobile-first design crucial for restaurant discovery',
-        'Integration with reservation systems improves customer experience'
+        "Recognized the importance of personal organization and time management in a solo contract role, using Trello to track tasks and deadlines",
+        "Collaboration with key stakeholders is key to gain the trust of the client and ensure project success",
+        "Importance of streamlining user experiences to keep the bounce rate low",
+        "Understanding the balance between following design specifications and making practical adjustments for user experience",
+        "Asking questions to confirm understanding of requirements can save time and effort in the long run and keep surprises to a minimum"
       ]
     },
     technicalWriteup: {
-      implementation: 'Built on WordPress with custom theme development, integrated with OpenTable for reservations. Implemented responsive design with focus on menu readability and high-quality food photography optimization.',
+      implementation: 'Built on Evoq CMS with custom module development in HTML/CSS/JS, integrated with OpenTable for reservations. This was a contract role, and I was working solo.',
       learnings: [
-        'Custom WordPress theme development with PHP templating',
-        'Image optimization techniques for food photography',
-        'Third-party API integration (OpenTable reservation system)',
-        'Performance optimization for image-heavy restaurant sites',
-        'SEO implementation for local restaurant discovery'
+        'Custom Evoq CMS module development for dynamic content',
+        'HTML/CSS/JS integration for custom theme and responsive design',
+        'OpenTable API integration for reservation management',
+        'SEO best practices for restaurant websites',
+        'Cross-browser compatibility testing and optimization using tools like Google Lighthouse',
+        'Some of the limits to plugins and module development in Evoq CMS created a need for custom solutions, which improved my problem-solving skills'
       ]
     }
   },
@@ -61,24 +63,26 @@ const projectsData: Project[] = [
     title: 'Devon Seafood Grill',
     url: 'https://devonseafood.com',
     image: 'https://via.placeholder.com/400x250/388e3c/ffffff?text=Devon+Seafood+Grill',
-    technologies: ['WordPress', 'PHP', 'JavaScript', 'CSS3'],
+    technologies: ["ASP.NET MVC", "ASP.NET WebForms", "DotNetNuke", "Evoq CMS" ,"C#", "JavaScript", "SQL Server", "HTML/CSS"],
     productWriteup: {
       purpose: 'Develop a multi-location restaurant website that maintains brand consistency while allowing location-specific content. Focus on creating an intuitive user experience for finding locations, viewing menus, and making reservations.',
       learnings: [
-        'Multi-location business challenges require scalable content management',
-        'Location-based user experience improves conversion rates',
-        'Brand consistency across locations builds trust',
-        'User journey mapping critical for restaurant websites'
+        'Creating these sites after Bristol Seafood Grill helped me recognize the importance of scalable content management for multi-location businesses',
+        'The importance of knowing the questions to ask can help refine the project scope and ensure all requirements are met',
+        'Creating modules set the tone for my future React projects, where I could create reusable components that could be used across multiple projects',
+        'The importance of knowing the product can help ensure work items are completely refined and ready from development to deployment',
+        'Taking the time to be detailed in testing can oftentimes be more valueable than rushing to meet a deadline'
       ]
     },
     technicalWriteup: {
-      implementation: 'WordPress multisite implementation with location-specific customizations. Custom post types for menus and events, integrated mapping solutions, and centralized content management system.',
+      implementation: 'Built on Evoq CMS with custom module development in HTML/CSS/JS, integrated with OpenTable for reservations. This was a contract role, and I was working solo.',
       learnings: [
-        'WordPress multisite architecture and management',
-        'Custom post types and meta fields for restaurant data',
-        'Google Maps API integration for location services',
-        'Content Management System design for non-technical users',
-        'Database optimization for multi-location queries'
+        'Custom Evoq CMS module development for dynamic content',
+        'HTML/CSS/JS integration for custom theme and responsive design',
+        'OpenTable API integration for reservation management',
+        'SEO best practices for restaurant websites',
+        'Cross-browser compatibility testing and optimization using tools like Google Lighthouse',
+        'Some of the limits to plugins and module development in Evoq CMS created a need for custom solutions, which improved my problem-solving skills'
       ]
     }
   },
@@ -87,7 +91,7 @@ const projectsData: Project[] = [
     title: 'React Resource Hub',
     url: '#',
     image: 'https://via.placeholder.com/400x250/f57c00/ffffff?text=React+Resource+Hub',
-    technologies: ['React', 'TypeScript', 'Material-UI', 'Firebase'],
+    technologies: ['React', 'TypeScript', 'Material-UI', 'Firebase', 'ASP.NET Core API', 'Axios', 'T-SQL', 'Node.js'],
     productWriteup: {
       purpose: 'Create a comprehensive learning platform for React developers with curated resources, tutorials, and interactive examples. Focus on providing value for developers at all skill levels.',
       learnings: [
@@ -98,39 +102,43 @@ const projectsData: Project[] = [
       ]
     },
     technicalWriteup: {
-      implementation: 'React application with TypeScript for type safety, Material-UI for consistent design system, Firebase for authentication and data storage. Implemented code playground for interactive examples.',
+      implementation: 'React application with TypeScript for type safety, Material-UI for consistent design system, ASP.NET Core API for backend services, Firebase for authentication and data storage. Implemented code playground for interactive examples.',
       learnings: [
-        'TypeScript integration in React applications',
+        'React/JS application architecture best practices with atomic design principles',
         'Component library implementation and theming',
-        'Firebase Authentication and Firestore integration',
+        'Bootstrap for responsive design',
+        'Teaches full CRUD functionality with Axios data fetching, including error handling and loading states',
+        'Firebase Authentication integration',
         'Code playground implementation with sandboxed execution',
-        'Performance optimization for content-heavy applications'
+        'First time implementing React-Router-Dom for client-side routing',
+        'React best practices for state management and component lifecycle'
       ]
     }
   },
   {
     id: 4,
-    title: 'Inventory+ Portfolio POC',
+    title: 'Quest Outreach Platform',
     url: '#',
-    image: 'https://via.placeholder.com/400x250/7b1fa2/ffffff?text=Inventory%2B+POC',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
+    image: 'https://via.placeholder.com/400x250/7b1fa2/ffffff?text=Quest+Outreach+Platform',
+    technologies: ["C#", "ASP.NET Core", "HotChocolate", "MassTransit", "T-SQL", "MongoDB", "Azure Blob Storage", "React", "TypeScript", "GraphQL", "React-Relay", "MUI", "Azure DevOps"],
     productWriteup: {
-      purpose: 'Develop a proof-of-concept inventory management system that demonstrates full-stack development capabilities. Focus on creating an intuitive interface for inventory tracking with real-time updates.',
+      purpose: 'Develop an outreach platform, that performs email, phone, fax, and direct mail outreach to healthcare practitioner offices. The platform receives thousands of users per day and thus optimization and scalability have been and continue to be a focus. The platform is built on a microservices architecture with a focus on modularity and scalability, using the latest technologies like GraphQL and React-Relay for efficient data fetching and state management. Based in Azure DevOps platform, this project has been a significant learning experience in building scalable, high-performance applications.',
       learnings: [
-        'Inventory management requires real-time data synchronization',
-        'User interface design for data-heavy applications',
-        'Dashboard design principles for business applications',
-        'Importance of data validation and error handling'
+        'Importance of active participation in SCRUM ceremonies to ensure alignment and efficiency in completing work items',
+        'Variance in strengths among developers can be leveraged to create a more efficient team',
+        'A good balance between process and flexibility is crucial for team success',
+        'Understanding stakeholders\' needs and expectations is key to delivering value',
+        'Creating testing strategies can save a lot of time and effort for my QA team'
       ]
     },
     technicalWriteup: {
-      implementation: 'Full-stack MERN application with real-time updates using WebSockets. RESTful API design with comprehensive CRUD operations, data validation, and user authentication system.',
+      implementation: 'Based in ASP.NET Core with HotChocolate for GraphQL API, MassTransit for message queuing, SQL Server, MongoDB and Azure Blob Storage for data storage, this project has been a significant learning experience in building scalable, high-performance applications.',
       learnings: [
-        'MERN stack architecture and implementation',
-        'WebSocket integration for real-time updates',
-        'RESTful API design and best practices',
-        'Database schema design for inventory systems',
-        'Authentication and authorization implementation'
+        'Importance of alignment between development teams is key to delivering value efficiently',
+        'Understanding best practices for database queries and optimizations can significantly improve performance',
+        'Critical thinking to ensure edge cases are caught prior to production deployment',
+        'Monitoring and logging are essential for debugging and performance tuning',
+        'Code reviews are important for the entire development team to understand the codebase and improve overall quality'
       ]
     }
   },
@@ -152,7 +160,7 @@ const projectsData: Project[] = [
     technicalWriteup: {
       implementation: 'React application with TypeScript, Material-UI design system, Firebase hosting, and EmailJS for contact forms. Features include interactive 404 page, conversational contact form, and responsive design.',
       learnings: [
-        'Modern React patterns with hooks and context',
+        'Utilizing CoPilot for rapid prototyping and code generation with a critical eye for simplicity and maintainability',
         'TypeScript for type-safe development',
         'Material-UI customization and theming',
         'Firebase deployment and hosting configuration',
