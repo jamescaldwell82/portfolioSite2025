@@ -50,10 +50,23 @@ const Contact: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messageIdCounter = useRef(0);
   const hasInitialized = useRef(false);
+  const chatHeaderRef = useRef<HTMLDivElement>(null); // Add ref for chat header
+  const hasScrolledToHeader = useRef(false); // Track if we've already scrolled to header
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const scrollToHeader = () => {
+    chatHeaderRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  // Remove the automatic scroll to header on typing
+  // useEffect(() => {
+  //   if (isTyping) {
+  //     scrollToHeader();
+  //   }
+  // }, [isTyping]);
 
   useEffect(() => {
     scrollToBottom();
@@ -61,6 +74,7 @@ const Contact: React.FC = () => {
 
   const addBotMessage = useCallback((text: string, options?: string[]) => {
     setIsTyping(true);
+    
     setTimeout(() => {
       const newMessage: Message = {
         id: messageIdCounter.current++,
@@ -71,6 +85,12 @@ const Contact: React.FC = () => {
       };
       setMessages(prev => [...prev, newMessage]);
       setIsTyping(false);
+      
+      // Only scroll to header for the very first bot message
+      if (!hasScrolledToHeader.current && messageIdCounter.current === 1) {
+        hasScrolledToHeader.current = true;
+        setTimeout(() => scrollToHeader(), 300); // Small delay to let message render
+      }
     }, 800 + Math.random() * 1200); // Variable typing delay for realism
   }, []);
 
@@ -313,7 +333,7 @@ const Contact: React.FC = () => {
         } else if (lowerResponse.includes('project')) {
           window.location.href = '/projects';
         } else if (lowerResponse.includes('linkedin')) {
-          window.open('https://www.linkedin.com/in/your-profile', '_blank');
+          window.open('https://www.linkedin.com/in/james-caldwell-686042138/', '_blank');
         } else if (lowerResponse.includes('home')) {
           window.location.href = '/';
         }
@@ -348,6 +368,7 @@ const Contact: React.FC = () => {
         >
           {/* Chat Header */}
           <Box
+            ref={chatHeaderRef}
             sx={{
               p: { xs: 2, sm: 3 },
               bgcolor: 'rgba(100, 255, 218, 0.1)',
@@ -662,21 +683,14 @@ const Contact: React.FC = () => {
           >
             <Button
               startIcon={<EmailIcon />}
-              href="mailto:james@example.com"
+              href="mailto:james.caldwell82@outlook.com?subject=Mail%20from%20jcaldwell.io"
               sx={{ color: '#64ffda', fontSize: '0.8rem' }}
             >
-              james@example.com
-            </Button>
-            <Button
-              startIcon={<PhoneIcon />}
-              href="tel:+1234567890"
-              sx={{ color: '#64ffda', fontSize: '0.8rem' }}
-            >
-              (123) 456-7890
-            </Button>
+              james.caldwell82@outlook.com
+            </Button>           
             <Button
               startIcon={<LinkedInIcon />}
-              href="https://linkedin.com/in/jamescaldwell"
+              href="https://www.linkedin.com/in/james-caldwell-686042138/"
               target="_blank"
               sx={{ color: '#64ffda', fontSize: '0.8rem' }}
             >

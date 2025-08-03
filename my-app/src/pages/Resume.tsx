@@ -12,7 +12,8 @@ import {
   IconButton,
   Tooltip,
   Alert,
-  CircularProgress
+  CircularProgress,
+  Divider
 } from '@mui/material';
 import { 
   Download as DownloadIcon,
@@ -26,6 +27,108 @@ import {
 } from '@mui/icons-material';
 import PageLayout from '../components/PageLayout';
 import { linkedInService } from '../lib/linkedInService';
+
+// Add print styles to the document head
+const printStyles = `
+  @media print {
+    .pdf-container * {
+      background: white !important;
+      background-color: white !important;
+      color: #1a1a1a !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      border: none !important;
+    }
+    .pdf-container {
+      font-family: 'Times New Roman', Times, serif !important;
+      font-size: 12pt !important;
+      line-height: 1.5 !important;
+      color: #1a1a1a !important;
+      background: white !important;
+    }
+    .pdf-container .MuiCard-root {
+      background: white !important;
+      border: none !important;
+      box-shadow: none !important;
+      margin-bottom: 20pt !important;
+    }
+    .pdf-container .MuiCardContent-root {
+      background: white !important;
+      padding: 0 !important;
+    }
+    .pdf-container .MuiTypography-h3 {
+      color: #1a1a1a !important;
+      font-size: 22pt !important;
+      font-weight: bold !important;
+      margin-bottom: 8pt !important;
+      text-align: center !important;
+    }
+    .pdf-container .MuiTypography-h5 {
+      color: #1a1a1a !important;
+      font-size: 14pt !important;
+      font-weight: bold !important;
+      border-bottom: 2pt solid #1a1a1a !important;
+      padding-bottom: 2pt !important;
+      margin-top: 16pt !important;
+      margin-bottom: 8pt !important;
+    }
+    .pdf-container .MuiTypography-h6 {
+      color: #1a1a1a !important;
+      font-size: 12pt !important;
+      font-weight: bold !important;
+      margin-bottom: 2pt !important;
+    }
+    .pdf-container .MuiTypography-subtitle1 {
+      color: #2c2c2c !important;
+      font-size: 11pt !important;
+      font-style: italic !important;
+    }
+    .pdf-container .MuiTypography-body1 {
+      color: #1a1a1a !important;
+      font-size: 11pt !important;
+    }
+    .pdf-container .MuiTypography-body2 {
+      color: #1a1a1a !important;
+      font-size: 10pt !important;
+    }
+    .pdf-container .MuiChip-root {
+      background: #1a1a1a !important;
+      background-color: #1a1a1a !important;
+      color: white !important;
+      border: 1pt solid #1a1a1a !important;
+      font-size: 9pt !important;
+      font-weight: normal !important;
+    }
+    .pdf-container .no-print {
+      display: none !important;
+    }
+    .pdf-container svg {
+      display: none !important;
+    }
+    .pdf-container .work-experience-item {
+      margin-bottom: 12pt !important;
+      page-break-inside: avoid !important;
+    }
+    .pdf-container a {
+      color: #1a1a1a !important;
+      text-decoration: underline !important;
+    }
+  }
+`;
+
+// Inject print styles
+if (typeof document !== 'undefined') {
+  // Remove any existing print styles
+  const existingStyle = document.getElementById('resume-print-styles');
+  if (existingStyle) {
+    existingStyle.remove();
+  }
+  
+  const styleElement = document.createElement('style');
+  styleElement.id = 'resume-print-styles';
+  styleElement.textContent = printStyles;
+  document.head.appendChild(styleElement);
+}
 
 // Types for resume data structure
 interface WorkExperience {
@@ -242,14 +345,131 @@ const Resume: React.FC = () => {
     loadResumeData();
   }, []);
 
-  const handleDownloadPDF = () => {
-    // In a real implementation, this would download the latest PDF from your server
-    const link = document.createElement('a');
-    link.href = '/james-caldwell-resume.pdf'; // You'll need to add this file to the public folder
-    link.download = 'James-Caldwell-Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownloadPDF = async () => {
+    const element = document.querySelector('.pdf-container') as HTMLElement;
+    if (!element) {
+      console.error('PDF container not found');
+      return;
+    }
+
+    // Import html2pdf dynamically
+    const html2pdf = (await import('html2pdf.js')).default;
+
+    // Clone the element to avoid affecting the original
+    const clonedElement = element.cloneNode(true) as HTMLElement;
+    
+    // Apply PDF-specific styles directly to the cloned element
+    clonedElement.style.fontFamily = 'Times New Roman, Times, serif';
+    clonedElement.style.fontSize = '12pt';
+    clonedElement.style.lineHeight = '1.5';
+    clonedElement.style.color = '#1a1a1a';
+    clonedElement.style.background = 'white';
+    
+    // Remove all backgrounds and apply professional styling
+    const allElements = clonedElement.querySelectorAll('*');
+    allElements.forEach((el: any) => {
+      el.style.background = 'white';
+      el.style.backgroundColor = 'white';
+      el.style.color = '#1a1a1a';
+      el.style.boxShadow = 'none';
+      el.style.backdropFilter = 'none';
+      el.style.border = 'none';
+    });
+    
+    // Style specific elements
+    const h3Elements = clonedElement.querySelectorAll('h3, .MuiTypography-h3');
+    h3Elements.forEach((el: any) => {
+      el.style.color = '#1a1a1a';
+      el.style.fontSize = '22pt';
+      el.style.fontWeight = 'bold';
+      el.style.textAlign = 'center';
+      el.style.marginBottom = '8pt';
+    });
+    
+    const h5Elements = clonedElement.querySelectorAll('h5, .MuiTypography-h5');
+    h5Elements.forEach((el: any) => {
+      el.style.color = '#1a1a1a';
+      el.style.fontSize = '14pt';
+      el.style.fontWeight = 'bold';
+      el.style.borderBottom = '2pt solid #1a1a1a';
+      el.style.paddingBottom = '2pt';
+      el.style.marginTop = '16pt';
+      el.style.marginBottom = '8pt';
+
+      // Add page break before Technical Skills section
+      if (el.textContent && el.textContent.includes('Technical Skills')) {
+        el.style.pageBreakBefore = 'always';
+        el.style.marginTop = '0pt'; // Reset margin after page break
+      }
+    });
+    
+    const chips = clonedElement.querySelectorAll('.MuiChip-root');
+    chips.forEach((el: any) => {
+      // Set background and color directly
+      el.style.setProperty('background', '#1a1a1a', 'important');
+      el.style.setProperty('background-color', '#1a1a1a', 'important');
+      el.style.setProperty('color', 'white', 'important');
+      el.style.border = '1pt solid #1a1a1a';
+      el.style.fontSize = '9pt';
+      el.style.setProperty('border-radius', '0', 'important');
+      
+      // Also style the label and any child elements
+      const allChipChildren = el.querySelectorAll('*');
+      allChipChildren.forEach((child: any) => {
+        child.style.setProperty('background', '#1a1a1a', 'important');
+        child.style.setProperty('background-color', '#1a1a1a', 'important');
+        child.style.setProperty('color', 'white', 'important');
+        child.style.setProperty('border-radius', '0', 'important');
+      });
+    });
+    
+    // Show PDF header (force display since @media print doesn't work with html2pdf)
+    const pdfHeader = clonedElement.querySelector('.pdf-header');
+    if (pdfHeader) {
+      (pdfHeader as any).style.setProperty('display', 'block', 'important');
+      (pdfHeader as any).style.marginBottom = '20pt';
+      (pdfHeader as any).style.textAlign = 'center';
+      (pdfHeader as any).style.borderBottom = '2px solid #1a1a1a';
+      (pdfHeader as any).style.paddingBottom = '8pt';
+      (pdfHeader as any).style.paddingTop = '8pt';
+      (pdfHeader as any).style.setProperty('background', '#1a1a1a', 'important');
+      (pdfHeader as any).style.setProperty('background-color', '#1a1a1a', 'important');
+      (pdfHeader as any).style.setProperty('visibility', 'visible', 'important');
+      
+      // Force all children to be visible and styled with white text
+      const headerChildren = pdfHeader.querySelectorAll('*');
+      headerChildren.forEach((child: any) => {
+        child.style.setProperty('display', 'block', 'important');
+        child.style.setProperty('color', 'white', 'important');
+        child.style.setProperty('background', '#1a1a1a', 'important');
+        child.style.setProperty('background-color', '#1a1a1a', 'important');
+      });
+    }
+    
+    // Hide no-print elements
+    const noPrintElements = clonedElement.querySelectorAll('.no-print');
+    noPrintElements.forEach((el: any) => {
+      el.style.display = 'none';
+    });
+
+    const opt = {
+      margin: 0.5,
+      filename: 'James-Caldwell-Resume.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { 
+        scale: 2,
+        useCORS: true,
+        letterRendering: true,
+        backgroundColor: 'white'
+      },
+      jsPDF: { 
+        unit: 'in', 
+        format: 'letter', 
+        orientation: 'portrait' 
+      }
+    };
+
+    html2pdf().set(opt).from(clonedElement).save();
   };
 
   const formatDate = (date: string) => {
@@ -279,9 +499,49 @@ const Resume: React.FC = () => {
 
   return (
     <PageLayout title="Resume">
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" className="pdf-container">
+        {/* PDF Header - only visible in PDF */}
+        <Box 
+          className="pdf-header"
+          sx={{ 
+            display: 'none',
+            '@media print': {
+              display: 'block',
+              mb: 4,
+              mx: 0,
+              textAlign: 'center',
+              borderBottom: '2px solid #1a1a1a',
+              pb: 2,
+              pt: 2,
+              background: '#1a1a1a'
+            }
+          }}
+        >
+          <Typography variant="h3" sx={{ color: 'white', mb: 0, fontWeight: 'bold' }}>
+            James Caldwell | Software Engineer 
+          </Typography>
+           <Stack direction="column" spacing={2} justifyContent="space-between" flexWrap="wrap" useFlexGap>
+          <Typography variant="body2" sx={{ color: 'white', my: 0 }} flex={1}>
+            9044 Kagan Ave NE | Monticello, MN 55362
+          </Typography>
+            <Typography variant="body2" sx={{ color: 'white', mb: 2 }} flex={1}>
+              785.727.9319
+            </Typography>
+            <Typography variant="body2" sx={{ color: 'white' }}>
+              {resumeData.contactInfo.email}
+            </Typography>
+            <Typography variant="body2" sx={{ color: 'white' }}>
+              {resumeData.contactInfo.github}
+            </Typography>
+            <Typography variant="body2" sx={{ color: 'white' }}>
+              {resumeData.contactInfo.linkedin}
+            </Typography>
+          </Stack>
+        </Box>
+
         {/* Header with contact info and actions */}
         <Paper 
+          className="no-print"
           sx={{ 
             p: 4, 
             mb: 4, 
@@ -379,7 +639,7 @@ const Resume: React.FC = () => {
             </Typography>
             <Stack spacing={3}>
               {resumeData.workExperience.map((job) => (
-                <Box key={job.id}>
+                <Box key={job.id} className="work-experience-item">
                   <Box sx={{ mb: 2 }}>
                     <Typography variant="h6" sx={{ color: 'white', fontWeight: 'bold' }}>
                       {job.position}
