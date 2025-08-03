@@ -401,6 +401,17 @@ const Resume: React.FC = () => {
         el.style.marginTop = '0pt'; // Reset margin after page break
       }
     });
+
+    // Add page breaks for specific job positions (h6 elements)
+    const h6Elements = clonedElement.querySelectorAll('h6, .MuiTypography-h6');
+    h6Elements.forEach((el: any) => {
+      if (el.textContent && el.textContent.includes('Technical Trainer & Co-Lead')) {
+        el.style.pageBreakBefore = 'always';
+      }
+      if (el.textContent && el.textContent.includes("Children's Ministry Coordinator")) {
+        el.style.pageBreakBefore = 'always';
+      }
+    });
     
     const chips = clonedElement.querySelectorAll('.MuiChip-root');
     chips.forEach((el: any) => {
