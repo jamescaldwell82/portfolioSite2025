@@ -23,10 +23,17 @@ const Learn: React.FC = () => {
         educational content here.
       </Typography>
       
+      <Typography variant="h5" sx={{ mt: 3, mb: 2, color: '#2563eb', fontWeight: 600 }}>
+        How do I learn to code?
+      </Typography>
       <Typography variant="body1" paragraph>
-        Curate valuable resources for others in your field, share learning paths, 
-        recommend books, courses, or tools. This positions you as someone who values 
-        continuous learning and knowledge sharing.
+        Learning to code is a journey that requires consistency, practice, and the right resources. 
+        Start with understanding the fundamentals of programming logic and syntax through interactive 
+        platforms like freeCodeCamp or Codecademy. Complement your learning with video tutorials 
+        from YouTube channels like Traversy Media, The Net Ninja, or freeCodeCamp's channel, which 
+        offer visual explanations and real-world projects. Build projects regularly to apply what 
+        you've learned, join coding communities for support, and don't be afraid to make mistakes 
+        - they're an essential part of the learning process.
       </Typography>
     </PageLayout>
   );
