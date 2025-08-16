@@ -1,0 +1,20 @@
+{
+  "name": "James Caldwell Portfolio",
+  "short_name": "J. Caldwell",
+  "description": "Software Engineer & Technical Trainer Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#64ffda",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["portfolio", "developer", "education"],
+  "lang": "en-US"
+}

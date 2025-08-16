@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { useLocation } from 'react-router-dom'
 import {
   Box,
@@ -11,20 +11,32 @@ import AuthModal from './components/AuthModal'
 import PageTransition from './components/PageTransition'
 import AnimatedRoadmapBackground from './components/AnimatedRoadmapBackground'
 
-// Import page components
-import Home from './pages/Home'
-import Bio from './pages/Bio'
-import Resume from './pages/Resume'
-import Projects from './pages/Projects'
-import Blog from './pages/Blog'
-import Learn from './pages/Learn'
-import Contact from './pages/Contact'
-import NotFound from './pages/NotFound'
+// Lazy load page components for better performance
+const Home = lazy(() => import('./pages/Home'))
+const Bio = lazy(() => import('./pages/Bio'))
+const Resume = lazy(() => import('./pages/Resume'))
+const Projects = lazy(() => import('./pages/Projects'))
+const Blog = lazy(() => import('./pages/Blog'))
+const Learn = lazy(() => import('./pages/Learn'))
+const Contact = lazy(() => import('./pages/Contact'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 function App() {
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const { loading } = useAuth()
   const location = useLocation()
+
+  // Loading fallback component
+  const PageLoader = () => (
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="400px"
+    >
+      <CircularProgress sx={{ color: '#64ffda' }} />
+    </Box>
+  )
 
   if (loading) {
     return (
@@ -34,9 +46,30 @@ function App() {
         alignItems="center"
         minHeight="100vh"
       >
-        <CircularProgress />
+        <CircularProgress sx={{ color: '#64ffda' }} />
       </Box>
     )
+  }
+
+  const renderPage = () => {
+    switch (location.pathname) {
+      case '/':
+        return <Home />
+      case '/bio':
+        return <Bio />
+      case '/resume':
+        return <Resume />
+      case '/projects':
+        return <Projects />
+      case '/blog':
+        return <Blog />
+      case '/learn':
+        return <Learn />
+      case '/contact':
+        return <Contact />
+      default:
+        return <NotFound />
+    }
   }
 
   return (
@@ -60,15 +93,9 @@ function App() {
           position: 'relative',
           zIndex: 1 // Ensure content is above background
         }}>
-          {location.pathname === '/' && <Home />}
-          {location.pathname === '/bio' && <Bio />}
-          {location.pathname === '/resume' && <Resume />}
-          {location.pathname === '/projects' && <Projects />}
-          {location.pathname === '/blog' && <Blog />}
-          {location.pathname === '/learn' && <Learn />}
-          {location.pathname === '/contact' && <Contact />}
-          {/* 404 - Catch all unmatched routes */}
-          {!['/bio', '/resume', '/projects', '/blog', '/learn', '/contact', '/'].includes(location.pathname) && <NotFound />}
+          <Suspense fallback={<PageLoader />}>
+            {renderPage()}
+          </Suspense>
         </Box>
       </PageTransition>
 
