@@ -26,15 +26,21 @@ function App() {
   const { loading } = useAuth()
   const location = useLocation()
 
-  // Loading fallback component
+  // Optimized loading fallback component
   const PageLoader = () => (
     <Box
       display="flex"
       justifyContent="center"
       alignItems="center"
-      minHeight="400px"
+      minHeight="60vh"
+      sx={{
+        '& .MuiCircularProgress-root': {
+          color: '#64ffda',
+          animationDuration: '1.4s'
+        }
+      }}
     >
-      <CircularProgress sx={{ color: '#64ffda' }} />
+      <CircularProgress size={32} thickness={4} />
     </Box>
   )
 
