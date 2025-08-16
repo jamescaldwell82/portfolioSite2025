@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://portfoliosite2025-3f6d7.web.app/sitemap.xml
+
+# Crawl-delay for politeness
+Crawl-delay: 1
+
+# Disallow admin or sensitive paths (if any)
+# Disallow: /admin/
+# Disallow: /private/

@@ -20,6 +20,7 @@ import {
   Home
 } from '@mui/icons-material';
 import PageLayout from '../components/PageLayout';
+import SEO from '../components/SEO';
 
 interface TimelineChapter {
   id: number;
@@ -105,7 +106,14 @@ const chapters: TimelineChapter[] = [
   };
 
   return (
-    <Box sx={{ position: 'relative', minHeight: '100vh', width: '100%' }}>
+    <>
+      <SEO 
+        title="Bio - James Caldwell"
+        description="Learn about James Caldwell's professional journey from psychology graduate to software engineer, including his experience in non-profit work, education, and technical training."
+        keywords="James Caldwell Bio, Software Engineer Background, Technical Trainer Experience, Non-profit Work, Education Career, Professional Journey"
+        url="https://portfoliosite2025-3f6d7.web.app/bio"
+      />
+      <Box sx={{ position: 'relative', minHeight: '100vh', width: '100%' }}>
       <PageLayout>
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
@@ -391,6 +399,7 @@ const chapters: TimelineChapter[] = [
       </Container>
     </PageLayout>
     </Box>
+    </>
   );
 };
 

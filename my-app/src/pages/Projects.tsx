@@ -12,6 +12,7 @@ import {
   Stack
 } from '@mui/material';
 import { Launch as LaunchIcon } from '@mui/icons-material';
+import SEO from '../components/SEO';
 
 interface Project {
   id: number;
@@ -246,7 +247,14 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
 const Projects: React.FC = () => {
   return (
-    <Box sx={{ maxWidth: 1200, mx: 'auto', p: 3 }}>
+    <>
+      <SEO 
+        title="Projects - James Caldwell"
+        description="View James Caldwell's software development projects and portfolio. Explore applications built with React, TypeScript, Firebase, and other modern technologies."
+        keywords="James Caldwell Projects, Software Development Portfolio, React Projects, TypeScript Applications, Firebase Apps, Web Development"
+        url="https://portfoliosite2025-3f6d7.web.app/projects"
+      />
+      <Box sx={{ maxWidth: 1200, mx: 'auto', p: 3 }}>
       <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
         Projects
       </Typography>
@@ -270,6 +278,7 @@ const Projects: React.FC = () => {
         ))}
       </Box>
     </Box>
+    </>
   );
 };
 

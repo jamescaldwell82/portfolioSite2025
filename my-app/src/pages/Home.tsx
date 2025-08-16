@@ -8,6 +8,7 @@ import {
   Stack
 } from '@mui/material';
 import { Download, Email } from '@mui/icons-material';
+import SEO from '../components/SEO';
 
 const Home: React.FC = () => {
   // Rotating subtitle titles
@@ -37,7 +38,14 @@ const Home: React.FC = () => {
   }, [titles.length]);
 
   return (
-    <Box
+    <>
+      <SEO 
+        title="James Caldwell - Software Engineer & Technical Trainer Portfolio"
+        description="Welcome to James Caldwell's portfolio. Software Engineer, Full Stack Developer, Technical Trainer & Coach. Experienced in React, TypeScript, Python, and Firebase. View my projects, resume, and professional journey."
+        keywords="James Caldwell, Software Engineer, Full Stack Developer, Technical Trainer, React, TypeScript, Python, Firebase, Portfolio, Web Development, Coaching, Kansas, Home"
+        url="https://portfoliosite2025-3f6d7.web.app/"
+      />
+      <Box
       sx={{
         height: 'calc(100vh - 64px)', // Subtract navigation height (64px on mobile, 72px on desktop)
         '@media (min-width: 900px)': {
@@ -176,6 +184,7 @@ const Home: React.FC = () => {
         </Stack>
       </Container>
     </Box>
+    </>
   );
 };
 

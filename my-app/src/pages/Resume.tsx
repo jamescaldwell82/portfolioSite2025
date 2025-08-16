@@ -26,6 +26,7 @@ import {
 } from '@mui/icons-material';
 import PageLayout from '../components/PageLayout';
 import { linkedInService } from '../lib/linkedInService';
+import SEO from '../components/SEO';
 
 // Add print styles to the document head
 const printStyles = `
@@ -508,7 +509,14 @@ const Resume: React.FC = () => {
   }
 
   return (
-    <PageLayout title="Resume">
+    <>
+      <SEO 
+        title="Resume - James Caldwell"
+        description="Download James Caldwell's resume. Software Engineer and Technical Trainer with experience in React, TypeScript, Python, Firebase, and team leadership. View work experience, education, and skills."
+        keywords="James Caldwell Resume, Software Engineer CV, Technical Trainer Resume, React Developer, TypeScript, Python, Firebase, Download Resume"
+        url="https://portfoliosite2025-3f6d7.web.app/resume"
+      />
+      <PageLayout title="Resume">
       <Container maxWidth="lg" className="pdf-container">
         {/* PDF Header - only visible in PDF */}
         <Box 
@@ -773,6 +781,7 @@ const Resume: React.FC = () => {
         )}
       </Container>
     </PageLayout>
+    </>
   );
 };
 

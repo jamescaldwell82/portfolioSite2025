@@ -17,6 +17,7 @@ import {
   LinkedIn as LinkedInIcon
 } from '@mui/icons-material';
 import PageLayout from '../components/PageLayout';
+import SEO from '../components/SEO';
 import { sendContactNotification, logContactData, type ContactData } from '../lib/contactService';
 
 interface Message {
@@ -341,7 +342,14 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <PageLayout>
+    <>
+      <SEO 
+        title="Contact - James Caldwell"
+        description="Get in touch with James Caldwell. Send a message to discuss software engineering opportunities, technical training, coaching, or collaboration on projects."
+        keywords="Contact James Caldwell, Software Engineer Contact, Technical Trainer, Collaboration, Hiring, Consulting"
+        url="https://portfoliosite2025-3f6d7.web.app/contact"
+      />
+      <PageLayout>
       <Box sx={{ 
         height: { xs: '100vh', sm: '100vh' },
         display: 'flex', 
@@ -699,6 +707,7 @@ const Contact: React.FC = () => {
         </Box>
       </Box>
     </PageLayout>
+    </>
   );
 };
 

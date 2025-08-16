@@ -1,0 +1,10 @@
+# This is a placeholder for your Open Graph image
+# Create a 1200x630px image with your name and title
+# Place it at: /public/og-image.png
+# 
+# Recommended content:
+# - Your name: "James Caldwell" 
+# - Title: "Software Engineer & Technical Trainer"
+# - Your website URL
+# - Professional photo or branding elements
+# - Dark background to match your portfolio theme
